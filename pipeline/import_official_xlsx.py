@@ -220,6 +220,51 @@ def donga_results(path: Path) -> list[dict]:
     return output
 
 
+def ulsan_results(path: Path) -> list[dict]:
+    """Read Ulsan's vocational high-school rows from the official workbook."""
+    sheets = workbook_rows(path)
+    rows = sheets[next(name for name in sheets if "학생부교과" in name)]
+    output = []
+    in_track = False
+    for row_number, cells in rows:
+        if cells and cells[0].strip() == "특성화고교졸업자(정원외)전형":
+            in_track = True
+        elif in_track and cells and cells[0]:
+            break
+        if not in_track or len(cells) < 8 or not cells[1]:
+            continue
+        metrics = [
+            grade_metric(
+                "grade_final_average",
+                "최종등록자 평균성적",
+                cells[6],
+                "final_registered",
+            ),
+            grade_metric(
+                "grade_final_70_cut",
+                "최종등록자 70%컷 성적",
+                cells[7],
+                "final_registered",
+            ),
+        ]
+        output.append({
+            "university": "울산대",
+            "track": "특성화고교졸업자(정원외)전형",
+            "program": cells[1],
+            "row": row_number,
+            "reported_year": 2026,
+            "quota": number(cells[2]),
+            "applicants": number(cells[3]),
+            "competition_rate": number(cells[4]),
+            "waitlist_rank": number(cells[5]),
+            "metrics": [metric for metric in metrics if metric],
+            "raw": cells,
+        })
+    if len(output) != 10:
+        raise ValueError(f"울산대 모집단위 10개를 예상했지만 {len(output)}개를 찾았습니다.")
+    return output
+
+
 def ensure_institution(connection: sqlite3.Connection, university: str) -> int:
     row = connection.execute("SELECT id FROM institutions WHERE canonical_name = ?", (university,)).fetchone()
     if row:
@@ -379,6 +424,15 @@ def main() -> None:
         admission_year=2026,
     )
     insert_results(connection, document_id, donga_results(donga_path))
+    ulsan_path = OFFICIAL_ROOT / "울산대" / "2026_수시_입시결과_학생부교과.xlsx"
+    document_id = insert_document(
+        connection,
+        "울산대",
+        ulsan_path,
+        "https://iphak.ulsan.ac.kr/main/46?action=view&no=16268",
+        admission_year=2026,
+    )
+    insert_results(connection, document_id, ulsan_results(ulsan_path))
     connection.commit()
     print(json.dumps(export_web(connection), ensure_ascii=False))
     connection.close()
