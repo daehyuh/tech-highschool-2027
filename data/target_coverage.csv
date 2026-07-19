@@ -41,10 +41,10 @@
 성공회대,grade_available,수시모집,서울,1,1,2,4,2,2,4,수시모집!14
 성균관대,source_checked_no_result,정시모집,,2,1,2,0,0,0,0,정시모집!8
 세종대,grade_available,정시모집,,2,2,3,39,20,38,39,정시모집!13
-수원대,results_without_grade,수시모집,경기,2,2,3,17,14,0,0,수시모집!27
+수원대,grade_available,수시모집,경기,2,2,3,25,15,8,8,수시모집!27
 숙명여대,source_checked_no_result,수시모집,서울,0,0,1,0,0,0,0,수시모집!15
 숭실대,results_without_grade,정시모집,,2,2,3,39,17,0,22,정시모집!12
-신한대,results_without_grade,수시모집,경기,4,4,5,28,14,0,28,수시모집!28
+신한대,grade_available,수시모집,경기,4,4,5,36,15,8,36,수시모집!28
 아주대,results_without_grade,정시모집,,2,2,3,11,11,0,0,정시모집!17
 안양대,results_without_grade,수시모집,경기,2,2,3,4,2,0,0,수시모집!29
 연세대,source_checked_no_result,정시모집,,1,0,1,0,0,0,0,정시모집!7

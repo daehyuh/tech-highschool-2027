@@ -78,6 +78,13 @@ def grade_metric(code: str, label: str, value: str, stage: str | None = None) ->
     return {"code": code, "label": label, "value": parsed, "unit": "grade", "stage": stage}
 
 
+def numeric_metric(code: str, label: str, value: str, unit: str, stage: str | None = None) -> dict | None:
+    parsed = number(value)
+    if parsed is None:
+        return None
+    return {"code": code, "label": label, "value": parsed, "unit": unit, "stage": stage}
+
+
 def gachon_results(path: Path) -> list[dict]:
     rows = workbook_rows(path)["Sheet1"]
     medical_programs = re.compile(r"의료산업|간호|치위생|방사선|물리치료|응급구조|의예|약학")
@@ -421,15 +428,106 @@ def hanshin_results(path: Path) -> list[dict]:
     return output
 
 
+def suwon_results(path: Path) -> list[dict]:
+    """Read Suwon's vocational graduate rows, including the visually separated grade column."""
+    with pdfplumber.open(path) as document:
+        lines = (document.pages[8].extract_text(layout=True) or "").splitlines()
+    row_pattern = re.compile(
+        r"^\s*(.+?)\s+(\d+)\s+(\d+)\s+(\d+(?:\.\d+)?)\s+(\d+(?:\.\d+)?)\s*$"
+    )
+    output = []
+    for row_index, line in enumerate(lines):
+        match = row_pattern.match(line)
+        if not match:
+            continue
+        prefix, quota, applicants, competition_rate, average_grade = match.groups()
+        program = prefix.strip().split()[-1]
+        metric = grade_metric("grade_average", "학생부성적 평균", average_grade)
+        if not metric:
+            continue
+        output.append({
+            "university": "수원대", "track": "특성화고졸업자전형", "program": program,
+            "page": 9, "table_index": 0, "row": row_index, "reported_year": 2026,
+            "quota": number(quota), "applicants": number(applicants),
+            "competition_rate": number(competition_rate), "metrics": [metric], "raw": line,
+        })
+    if len(output) != 8:
+        raise ValueError(f"수원대 모집단위 8개를 예상했지만 {len(output)}개를 찾았습니다.")
+    return output
+
+
+def shinhan_results(path: Path) -> list[dict]:
+    """Read Shinhan's vocational graduate grade and 1,000-point score columns."""
+    with pdfplumber.open(path) as document:
+        lines = (document.pages[9].extract_text(layout=True) or "").splitlines()
+    row_pattern = re.compile(
+        r"^\s*(.+?)\s+(\d+)\s+(\d+(?:\.\d+)?)\s+(\d+(?:\.\d+)?)\s+"
+        r"(\d+(?:\.\d+)?)\s+(\d+(?:\.\d+)?)\s+(\d+(?:\.\d+)?)\s+(-|\d+)\s*$"
+    )
+    output = []
+    for row_index, line in enumerate(lines):
+        match = row_pattern.match(line)
+        if not match:
+            continue
+        program, quota, competition_rate, cutoff_grade, cutoff_score, average_grade, average_score, waitlist = match.groups()
+        metrics = [
+            grade_metric("grade_cutoff", "커트라인 등급", cutoff_grade, "final_registered"),
+            numeric_metric("score_cutoff_1000", "커트라인 원점수(1000점 만점)", cutoff_score, "points", "final_registered"),
+            grade_metric("grade_final_average", "최종등록자 평균등급", average_grade, "final_registered"),
+            numeric_metric("score_final_average_1000", "최종등록자 평균 원점수(1000점 만점)", average_score, "points", "final_registered"),
+        ]
+        output.append({
+            "university": "신한대", "track": "특성화고교졸업자전형", "program": program.strip(),
+            "page": 10, "table_index": 1, "row": row_index, "reported_year": 2026,
+            "quota": number(quota), "competition_rate": number(competition_rate),
+            "waitlist_rank": number(waitlist), "metrics": [metric for metric in metrics if metric], "raw": line,
+        })
+    if len(output) != 8:
+        raise ValueError(f"신한대 모집단위 8개를 예상했지만 {len(output)}개를 찾았습니다.")
+    return output
+
+
 def ensure_institution(connection: sqlite3.Connection, university: str) -> int:
     row = connection.execute("SELECT id FROM institutions WHERE canonical_name = ?", (university,)).fetchone()
     if row:
         return row[0]
+    source_rows = connection.execute("SELECT id FROM institutions WHERE source_name = ?", (university,)).fetchall()
+    if len(source_rows) == 1:
+        return source_rows[0][0]
     cursor = connection.execute(
         "INSERT INTO institutions(source_name, canonical_name, campus) VALUES (?, ?, ?)",
         (university, university, re.search(r"\(([^)]+)\)", university).group(1) if "(" in university else None),
     )
     return cursor.lastrowid
+
+
+def merge_alias_institution(connection: sqlite3.Connection, alias: str, canonical_name: str) -> None:
+    """Merge an earlier short-name institution into its canonical institution."""
+    alias_row = connection.execute(
+        "SELECT id FROM institutions WHERE source_name = ? AND canonical_name = ?",
+        (alias, alias),
+    ).fetchone()
+    target_row = connection.execute(
+        "SELECT id FROM institutions WHERE canonical_name = ?",
+        (canonical_name,),
+    ).fetchone()
+    if not alias_row or not target_row or alias_row[0] == target_row[0]:
+        return
+    alias_id, target_id = alias_row[0], target_row[0]
+    connection.execute("UPDATE documents SET institution_id = ? WHERE institution_id = ?", (target_id, alias_id))
+    for program_id, normalized_name in connection.execute(
+        "SELECT id, normalized_name FROM programs WHERE institution_id = ?", (alias_id,)
+    ).fetchall():
+        existing = connection.execute(
+            "SELECT id FROM programs WHERE institution_id = ? AND normalized_name = ?",
+            (target_id, normalized_name),
+        ).fetchone()
+        if existing:
+            connection.execute("UPDATE results SET program_id = ? WHERE program_id = ?", (existing[0], program_id))
+            connection.execute("DELETE FROM programs WHERE id = ?", (program_id,))
+        else:
+            connection.execute("UPDATE programs SET institution_id = ? WHERE id = ?", (target_id, program_id))
+    connection.execute("DELETE FROM institutions WHERE id = ?", (alias_id,))
 
 
 def insert_document(
@@ -602,30 +700,50 @@ def main() -> None:
         admission_year=2026,
     )
     insert_results(connection, document_id, ulsan_results(ulsan_path))
+    canonical_aliases = {
+        "동명대": "동명대학교",
+        "대진대": "대진대학교",
+        "성결대": "성결대학교",
+        "한신대": "한신대학교",
+    }
+    for alias, canonical_name in canonical_aliases.items():
+        merge_alias_institution(connection, alias, canonical_name)
     nesin_imports = [
         (
-            "동명대",
+            "동명대학교",
             NESIN_ROOT / "동명대" / "동명대학교" / "동명대학교__2026__입시결과.pdf",
             "https://www.nesin.com/html/?dir1=menu03&dir2=university_rating_susi_detail&code=189",
             tongmyong_results,
         ),
         (
-            "대진대",
+            "대진대학교",
             NESIN_ROOT / "대진대" / "대진대학교" / "대진대학교__2026__입시결과.pdf",
             "https://www.nesin.com/html/?dir1=menu03&dir2=university_rating_susi_detail&code=51",
             daejin_results,
         ),
         (
-            "성결대",
+            "성결대학교",
             NESIN_ROOT / "성결대" / "성결대학교" / "성결대학교__2026__입시결과.pdf",
             "https://www.nesin.com/html/?dir1=menu03&dir2=university_rating_susi_detail&code=55",
             sungkyul_results,
         ),
         (
-            "한신대",
+            "한신대학교",
             NESIN_ROOT / "한신대" / "한신대학교" / "한신대학교__2026__입시결과.pdf",
             "https://www.nesin.com/html/?dir1=menu03&dir2=university_rating_susi_detail&code=77",
             hanshin_results,
+        ),
+        (
+            "수원대학교",
+            NESIN_ROOT / "수원대" / "수원대학교" / "수원대학교__2026__입시결과.pdf",
+            "https://www.nesin.com/html/?dir1=menu03&dir2=university_rating_susi_detail&code=57",
+            suwon_results,
+        ),
+        (
+            "신한대학교(동두천)",
+            NESIN_ROOT / "신한대" / "신한대학교(동두천)" / "신한대학교(동두천)__2026__입시결과.pdf",
+            "https://www.nesin.com/html/?dir1=menu03&dir2=university_rating_susi_detail&code=216",
+            shinhan_results,
         ),
     ]
     for university, path, source_url, parser in nesin_imports:

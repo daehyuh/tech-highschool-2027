@@ -4,11 +4,11 @@
     "universities_with_pdf": 48,
     "universities_with_candidate_pdf": 38,
     "universities_with_results": 61,
-    "universities_with_grade_results": 44,
+    "universities_with_grade_results": 46,
     "universities_with_source": 82,
     "statuses": {
-      "grade_available": 44,
-      "results_without_grade": 17,
+      "grade_available": 46,
+      "results_without_grade": 15,
       "source_checked_no_result": 21,
       "candidate_not_extracted": 0,
       "pdf_without_target_result": 0,
@@ -1619,13 +1619,13 @@
       "regions": [
         "경기"
       ],
-      "status": "results_without_grade",
+      "status": "grade_available",
       "pdf_count": 2,
       "candidate_pdf_count": 2,
-      "result_count": 17,
-      "program_count": 14,
-      "grade_result_count": 0,
-      "high_confidence_count": 0,
+      "result_count": 25,
+      "program_count": 15,
+      "grade_result_count": 8,
+      "high_confidence_count": 8,
       "source_count": 3,
       "documents": [
         {
@@ -1732,13 +1732,13 @@
       "regions": [
         "경기"
       ],
-      "status": "results_without_grade",
+      "status": "grade_available",
       "pdf_count": 4,
       "candidate_pdf_count": 4,
-      "result_count": 28,
-      "program_count": 14,
-      "grade_result_count": 0,
-      "high_confidence_count": 28,
+      "result_count": 36,
+      "program_count": 15,
+      "grade_result_count": 8,
+      "high_confidence_count": 36,
       "source_count": 5,
       "documents": [
         {

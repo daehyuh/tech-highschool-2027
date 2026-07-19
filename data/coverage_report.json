@@ -3,7 +3,7 @@
     "downloaded_universities": 53,
     "candidate_universities": 42,
     "universities_with_results": 38,
-    "universities_with_grade_results": 22,
+    "universities_with_grade_results": 24,
     "candidate_universities_without_results": 4,
     "universities_without_candidate_pdf": 11,
     "suspicious_program_count": 1
@@ -865,9 +865,9 @@
       "documents": 2,
       "candidate_documents": 2,
       "raw_tables": 2,
-      "results": 17,
-      "programs": 17,
-      "grade_results": 0,
+      "results": 25,
+      "programs": 18,
+      "grade_results": 8,
       "minimum_confidence": 0.55,
       "university": "수원대학교",
       "candidate_pages": [
@@ -890,7 +890,7 @@
           ]
         }
       ],
-      "status": "results_without_grade"
+      "status": "grade_available"
     },
     {
       "documents": 2,
@@ -963,9 +963,9 @@
       "documents": 2,
       "candidate_documents": 2,
       "raw_tables": 2,
-      "results": 14,
-      "programs": 14,
-      "grade_results": 0,
+      "results": 22,
+      "programs": 15,
+      "grade_results": 8,
       "minimum_confidence": 0.78,
       "university": "신한대학교(동두천)",
       "candidate_pages": [
@@ -988,7 +988,7 @@
           ]
         }
       ],
-      "status": "results_without_grade"
+      "status": "grade_available"
     },
     {
       "documents": 2,
