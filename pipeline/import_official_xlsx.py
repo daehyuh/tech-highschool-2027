@@ -171,6 +171,48 @@ def pyeongtaek_results(path: Path) -> list[dict]:
     }]
 
 
+def hankyong_results(path: Path) -> list[dict]:
+    """Read program-level vocational grades from HKN University's off-quota table."""
+    with pdfplumber.open(path) as document:
+        tables = document.pages[0].extract_tables()
+    if len(tables) != 1 or len(tables[0]) < 3:
+        raise ValueError("한경국립대 정원외전형 표 구조가 예상과 다릅니다.")
+
+    table = tables[0]
+    header = table[0]
+    if len(header) < 3 or "특성화고교출신자" not in (header[2] or ""):
+        raise ValueError("한경국립대 특성화고교출신자 열을 찾지 못했습니다.")
+
+    output = []
+    for row_index, cells in enumerate(table[2:], start=2):
+        if len(cells) < 3 or not cells[1] or number(cells[2]) is None:
+            continue
+        metric = grade_metric(
+            "grade_average",
+            "특성화고교출신자 평균등급",
+            cells[2],
+            "final_registered",
+        )
+        if not metric:
+            continue
+        output.append({
+            "university": "한경국립대",
+            "track": "특성화고교출신자",
+            "program": cells[1].replace("\n", "").strip(),
+            "page": 1,
+            "table_index": 0,
+            "row": row_index,
+            "reported_year": 2026,
+            "quota": None,
+            "competition_rate": None,
+            "metrics": [metric],
+            "raw": cells,
+        })
+    if len(output) != 9:
+        raise ValueError(f"한경국립대 모집단위 9개를 예상했지만 {len(output)}개를 찾았습니다.")
+    return output
+
+
 def donga_results(path: Path) -> list[dict]:
     """Read Dong-A's vocational-track table from the right half of PDF page 5."""
     with pdfplumber.open(path) as document:
@@ -345,7 +387,10 @@ def insert_results(connection: sqlite3.Connection, document_id: int, rows: list[
              metric_values.get(basis) if basis else None, basis,
              json.dumps(item["raw"], ensure_ascii=False)),
         )
-        if not cursor.lastrowid:
+        # sqlite3.lastrowid can retain the id from an earlier INSERT when
+        # INSERT OR IGNORE skips this result. rowcount is the authoritative
+        # signal that a new result row was created and may receive metrics.
+        if cursor.rowcount == 0:
             continue
         for metric in item["metrics"]:
             connection.execute(
@@ -383,6 +428,7 @@ def export_web(connection: sqlite3.Connection) -> dict:
 
 def main() -> None:
     connection = sqlite3.connect(DB_PATH)
+    connection.execute("PRAGMA foreign_keys = ON")
     gachon_path = OFFICIAL_ROOT / "가천대" / "2026_수시_입시결과.xlsx"
     gachon = gachon_results(gachon_path)
     for university in ("가천대", "가천대(메디컬)"):
@@ -415,6 +461,15 @@ def main() -> None:
         admission_year=2025,
     )
     insert_results(connection, document_id, pyeongtaek_results(pyeongtaek_path))
+    hankyong_path = OFFICIAL_ROOT / "한경국립대" / "2026_수시_정원외전형_입시결과.pdf"
+    document_id = insert_document(
+        connection,
+        "한경국립대",
+        hankyong_path,
+        "https://ipsi.hknu.ac.kr/result/result.php",
+        admission_year=2026,
+    )
+    insert_results(connection, document_id, hankyong_results(hankyong_path))
     donga_path = OFFICIAL_ROOT / "동아대" / "2026" / "2026학년도 학생부종합 입시결과.pdf"
     document_id = insert_document(
         connection,

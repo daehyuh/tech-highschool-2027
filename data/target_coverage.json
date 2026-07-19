@@ -3,13 +3,13 @@
     "target_universities": 82,
     "universities_with_pdf": 48,
     "universities_with_candidate_pdf": 38,
-    "universities_with_results": 60,
-    "universities_with_grade_results": 39,
+    "universities_with_results": 61,
+    "universities_with_grade_results": 40,
     "universities_with_source": 82,
     "statuses": {
-      "grade_available": 39,
+      "grade_available": 40,
       "results_without_grade": 21,
-      "source_checked_no_result": 22,
+      "source_checked_no_result": 21,
       "candidate_not_extracted": 0,
       "pdf_without_target_result": 0,
       "not_on_nesin": 0
@@ -2607,15 +2607,22 @@
       "regions": [
         "경기"
       ],
-      "status": "source_checked_no_result",
+      "status": "grade_available",
       "pdf_count": 0,
       "candidate_pdf_count": 0,
-      "result_count": 0,
-      "program_count": 0,
-      "grade_result_count": 0,
-      "high_confidence_count": 0,
-      "source_count": 1,
+      "result_count": 9,
+      "program_count": 9,
+      "grade_result_count": 9,
+      "high_confidence_count": 9,
+      "source_count": 2,
       "documents": [
+        {
+          "site_name": "한경국립대",
+          "year": 2026,
+          "local_path": "입시결과_공식/한경국립대/2026_수시_정원외전형_입시결과.pdf",
+          "source_url": "https://ipsi.hknu.ac.kr/result/result.php",
+          "is_candidate": true
+        },
         {
           "site_name": "대입정보포털 어디가",
           "year": 2024,
