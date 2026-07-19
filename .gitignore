@@ -1,0 +1,31 @@
+# Local collection artifacts and source documents
+/입시결과_PDF/
+/입시결과_공식/
+/tmp/
+/data/*cookies*.txt
+/data/*session*.html
+/data/*.html
+/data/*.png
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Web dependencies and build output
+/web/node_modules/
+/web/.next/
+/web/.vinext/
+/web/.wrangler/
+/web/dist/
+/web/out/
+/web/tmp-pack/
+/web/dev-server*.log
+/web/.env*
+
+# OS and editor files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

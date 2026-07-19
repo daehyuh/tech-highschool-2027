@@ -1,0 +1,1423 @@
+{
+  "source": "대입정보포털 어디가",
+  "admission_year": 2025,
+  "target_count": 82,
+  "matched_count": 82,
+  "unique_code_count": 79,
+  "sources": [
+    {
+      "university": "가천대",
+      "query": "가천대학교",
+      "adiga_code": "0000063",
+      "adiga_label": "가천대학교[본교]",
+      "candidate_count": 1,
+      "all_candidates": [
+        {
+          "code": "0000063",
+          "label": "가천대학교[본교]"
+        }
+      ],
+      "detail_url": "https://www.adiga.kr/ucp/uvt/uni/univDetailSelection.do?menuId=PCUVTINF2000&searchSyr=2025&unvCd=0000063",
+      "local_path": "입시결과_공식/대입정보포털/2025/0000063.html",
+      "status": "downloaded"
+    },
+    {
+      "university": "가천대(메디컬)",
+      "query": "가천대학교",
+      "adiga_code": "0000063",
+      "adiga_label": "가천대학교[본교]",
+      "candidate_count": 1,
+      "all_candidates": [
+        {
+          "code": "0000063",
+          "label": "가천대학교[본교]"
+        }
+      ],
+      "detail_url": "https://www.adiga.kr/ucp/uvt/uni/univDetailSelection.do?menuId=PCUVTINF2000&searchSyr=2025&unvCd=0000063",
+      "local_path": "입시결과_공식/대입정보포털/2025/0000063.html",
+      "status": "downloaded"
+    },
+    {
+      "university": "가톨릭대",
+      "query": "가톨릭대학교",
+      "adiga_code": "0000046",
+      "adiga_label": "가톨릭대학교[본교]",
+      "candidate_count": 11,
+      "all_candidates": [
+        {
+          "code": "0000046",
+          "label": "가톨릭대학교[본교]"
+        },
+        {
+          "code": "0000048",
+          "label": "가톨릭대학교[제2캠퍼스]"
+        },
+        {
+          "code": "0000049",
+          "label": "가톨릭대학교[제3캠퍼스]"
+        },
+        {
+          "code": "0000075",
+          "label": "광주가톨릭대학교[본교]"
+        },
+        {
+          "code": "0000088",
+          "label": "대구가톨릭대학교[본교]"
+        },
+        {
+          "code": "0000094",
+          "label": "대전가톨릭대학교[본교]"
+        },
+        {
+          "code": "0000221",
+          "label": "목포가톨릭대학교[본교]"
+        },
+        {
+          "code": "0000114",
+          "label": "부산가톨릭대학교[본교]"
+        },
+        {
+          "code": "0000139",
+          "label": "수원가톨릭대학교[본교]"
+        },
+        {
+          "code": "0000168",
+          "label": "인천가톨릭대학교[본교]"
+        },
+        {
+          "code": "0000167",
+          "label": "인천가톨릭대학교[제2캠퍼스]"
+        }
+      ],
+      "detail_url": "https://www.adiga.kr/ucp/uvt/uni/univDetailSelection.do?menuId=PCUVTINF2000&searchSyr=2025&unvCd=0000046",
+      "local_path": "입시결과_공식/대입정보포털/2025/0000046.html",
+      "status": "downloaded"
+    },
+    {
+      "university": "강남대",
+      "query": "강남대학교",
+      "adiga_code": "0000051",
+      "adiga_label": "강남대학교[본교]",
+      "candidate_count": 1,
+      "all_candidates": [
+        {
+          "code": "0000051",
+          "label": "강남대학교[본교]"
+        }
+      ],
+      "detail_url": "https://www.adiga.kr/ucp/uvt/uni/univDetailSelection.do?menuId=PCUVTINF2000&searchSyr=2025&unvCd=0000051",
+      "local_path": "입시결과_공식/대입정보포털/2025/0000051.html",
+      "status": "downloaded"
+    },
+    {
+      "university": "강원대",
+      "query": "강원대학교",
+      "adiga_code": "0000003",
+      "adiga_label": "강원대학교[본교]",
+      "candidate_count": 2,
+      "all_candidates": [
+        {
+          "code": "0000003",
+          "label": "강원대학교[본교]"
+        },
+        {
+          "code": "0000004",
+          "label": "강원대학교[제2캠퍼스]"
+        }
+      ],
+      "detail_url": "https://www.adiga.kr/ucp/uvt/uni/univDetailSelection.do?menuId=PCUVTINF2000&searchSyr=2025&unvCd=0000003",
+      "local_path": "입시결과_공식/대입정보포털/2025/0000003.html",
+      "status": "downloaded"
+    },
+    {
+      "university": "건국대",
+      "query": "건국대학교",
+      "adiga_code": "0000052",
+      "adiga_label": "건국대학교[본교]",
+      "candidate_count": 2,
+      "all_candidates": [
+        {
+          "code": "0000053",
+          "label": "건국대학교(글로컬)[분교]"
+        },
+        {
+          "code": "0000052",
+          "label": "건국대학교[본교]"
+        }
+      ],
+      "detail_url": "https://www.adiga.kr/ucp/uvt/uni/univDetailSelection.do?menuId=PCUVTINF2000&searchSyr=2025&unvCd=0000052",
+      "local_path": "입시결과_공식/대입정보포털/2025/0000052.html",
+      "status": "downloaded"
+    },
+    {
+      "university": "경북대",
+      "query": "경북대학교",
+      "adiga_code": "0000005",
+      "adiga_label": "경북대학교[본교]",
+      "candidate_count": 1,
+      "all_candidates": [
+        {
+          "code": "0000005",
+          "label": "경북대학교[본교]"
+        }
+      ],
+      "detail_url": "https://www.adiga.kr/ucp/uvt/uni/univDetailSelection.do?menuId=PCUVTINF2000&searchSyr=2025&unvCd=0000005",
+      "local_path": "입시결과_공식/대입정보포털/2025/0000005.html",
+      "status": "downloaded"
+    },
+    {
+      "university": "경상국립대",
+      "query": "경상국립대학교",
+      "adiga_code": "0000007",
+      "adiga_label": "경상국립대학교[본교]",
+      "candidate_count": 1,
+      "all_candidates": [
+        {
+          "code": "0000007",
+          "label": "경상국립대학교[본교]"
+        }
+      ],
+      "detail_url": "https://www.adiga.kr/ucp/uvt/uni/univDetailSelection.do?menuId=PCUVTINF2000&searchSyr=2025&unvCd=0000007",
+      "local_path": "입시결과_공식/대입정보포털/2025/0000007.html",
+      "status": "downloaded"
+    },
+    {
+      "university": "경성대",
+      "query": "경성대학교",
+      "adiga_code": "0000062",
+      "adiga_label": "경성대학교[본교]",
+      "candidate_count": 1,
+      "all_candidates": [
+        {
+          "code": "0000062",
+          "label": "경성대학교[본교]"
+        }
+      ],
+      "detail_url": "https://www.adiga.kr/ucp/uvt/uni/univDetailSelection.do?menuId=PCUVTINF2000&searchSyr=2025&unvCd=0000062",
+      "local_path": "입시결과_공식/대입정보포털/2025/0000062.html",
+      "status": "downloaded"
+    },
+    {
+      "university": "경희대",
+      "query": "경희대학교",
+      "adiga_code": "0000066",
+      "adiga_label": "경희대학교[본교]",
+      "candidate_count": 1,
+      "all_candidates": [
+        {
+          "code": "0000066",
+          "label": "경희대학교[본교]"
+        }
+      ],
+      "detail_url": "https://www.adiga.kr/ucp/uvt/uni/univDetailSelection.do?menuId=PCUVTINF2000&searchSyr=2025&unvCd=0000066",
+      "local_path": "입시결과_공식/대입정보포털/2025/0000066.html",
+      "status": "downloaded"
+    },
+    {
+      "university": "계명대",
+      "query": "계명대학교",
+      "adiga_code": "0000068",
+      "adiga_label": "계명대학교[본교]",
+      "candidate_count": 1,
+      "all_candidates": [
+        {
+          "code": "0000068",
+          "label": "계명대학교[본교]"
+        }
+      ],
+      "detail_url": "https://www.adiga.kr/ucp/uvt/uni/univDetailSelection.do?menuId=PCUVTINF2000&searchSyr=2025&unvCd=0000068",
+      "local_path": "입시결과_공식/대입정보포털/2025/0000068.html",
+      "status": "downloaded"
+    },
+    {
+      "university": "고려대",
+      "query": "고려대학교",
+      "adiga_code": "0000069",
+      "adiga_label": "고려대학교[본교]",
+      "candidate_count": 2,
+      "all_candidates": [
+        {
+          "code": "0000070",
+          "label": "고려대학교(세종)[분교]"
+        },
+        {
+          "code": "0000069",
+          "label": "고려대학교[본교]"
+        }
+      ],
+      "detail_url": "https://www.adiga.kr/ucp/uvt/uni/univDetailSelection.do?menuId=PCUVTINF2000&searchSyr=2025&unvCd=0000069",
+      "local_path": "입시결과_공식/대입정보포털/2025/0000069.html",
+      "status": "downloaded"
+    },
+    {
+      "university": "고려대(세종)",
+      "query": "고려대학교 세종캠퍼스",
+      "adiga_code": "0000070",
+      "adiga_label": "고려대학교(세종)[분교]",
+      "candidate_count": 0,
+      "all_candidates": [],
+      "detail_url": "https://www.adiga.kr/ucp/uvt/uni/univDetailSelection.do?menuId=PCUVTINF2000&searchSyr=2025&unvCd=0000070",
+      "local_path": "입시결과_공식/대입정보포털/2025/0000070.html",
+      "status": "downloaded"
+    },
+    {
+      "university": "광운대",
+      "query": "광운대학교",
+      "adiga_code": "0000074",
+      "adiga_label": "광운대학교[본교]",
+      "candidate_count": 1,
+      "all_candidates": [
+        {
+          "code": "0000074",
+          "label": "광운대학교[본교]"
+        }
+      ],
+      "detail_url": "https://www.adiga.kr/ucp/uvt/uni/univDetailSelection.do?menuId=PCUVTINF2000&searchSyr=2025&unvCd=0000074",
+      "local_path": "입시결과_공식/대입정보포털/2025/0000074.html",
+      "status": "downloaded"
+    },
+    {
+      "university": "국립강릉원주대",
+      "query": "국립강릉원주대학교",
+      "adiga_code": "0000001",
+      "adiga_label": "국립강릉원주대학교[본교]",
+      "candidate_count": 2,
+      "all_candidates": [
+        {
+          "code": "0000001",
+          "label": "국립강릉원주대학교[본교]"
+        },
+        {
+          "code": "0000002",
+          "label": "국립강릉원주대학교[제2캠퍼스]"
+        }
+      ],
+      "detail_url": "https://www.adiga.kr/ucp/uvt/uni/univDetailSelection.do?menuId=PCUVTINF2000&searchSyr=2025&unvCd=0000001",
+      "local_path": "입시결과_공식/대입정보포털/2025/0000001.html",
+      "status": "downloaded"
+    },
+    {
+      "university": "국립공주대",
+      "query": "국립공주대학교",
+      "adiga_code": "0000008",
+      "adiga_label": "국립공주대학교[본교]",
+      "candidate_count": 1,
+      "all_candidates": [
+        {
+          "code": "0000008",
+          "label": "국립공주대학교[본교]"
+        }
+      ],
+      "detail_url": "https://www.adiga.kr/ucp/uvt/uni/univDetailSelection.do?menuId=PCUVTINF2000&searchSyr=2025&unvCd=0000008",
+      "local_path": "입시결과_공식/대입정보포털/2025/0000008.html",
+      "status": "downloaded"
+    },
+    {
+      "university": "국립군산대",
+      "query": "국립군산대학교",
+      "adiga_code": "0000009",
+      "adiga_label": "국립군산대학교[본교]",
+      "candidate_count": 1,
+      "all_candidates": [
+        {
+          "code": "0000009",
+          "label": "국립군산대학교[본교]"
+        }
+      ],
+      "detail_url": "https://www.adiga.kr/ucp/uvt/uni/univDetailSelection.do?menuId=PCUVTINF2000&searchSyr=2025&unvCd=0000009",
+      "local_path": "입시결과_공식/대입정보포털/2025/0000009.html",
+      "status": "downloaded"
+    },
+    {
+      "university": "국립금오공과대",
+      "query": "국립금오공과대학교",
+      "adiga_code": "0000010",
+      "adiga_label": "국립금오공과대학교[본교]",
+      "candidate_count": 1,
+      "all_candidates": [
+        {
+          "code": "0000010",
+          "label": "국립금오공과대학교[본교]"
+        }
+      ],
+      "detail_url": "https://www.adiga.kr/ucp/uvt/uni/univDetailSelection.do?menuId=PCUVTINF2000&searchSyr=2025&unvCd=0000010",
+      "local_path": "입시결과_공식/대입정보포털/2025/0000010.html",
+      "status": "downloaded"
+    },
+    {
+      "university": "국립순천대",
+      "query": "국립순천대학교",
+      "adiga_code": "0000020",
+      "adiga_label": "국립순천대학교[본교]",
+      "candidate_count": 1,
+      "all_candidates": [
+        {
+          "code": "0000020",
+          "label": "국립순천대학교[본교]"
+        }
+      ],
+      "detail_url": "https://www.adiga.kr/ucp/uvt/uni/univDetailSelection.do?menuId=PCUVTINF2000&searchSyr=2025&unvCd=0000020",
+      "local_path": "입시결과_공식/대입정보포털/2025/0000020.html",
+      "status": "downloaded"
+    },
+    {
+      "university": "국립한국교통대(의왕)",
+      "query": "국립한국교통대학교",
+      "adiga_code": "0000034",
+      "adiga_label": "국립한국교통대학교[본교]",
+      "candidate_count": 1,
+      "all_candidates": [
+        {
+          "code": "0000034",
+          "label": "국립한국교통대학교[본교]"
+        }
+      ],
+      "detail_url": "https://www.adiga.kr/ucp/uvt/uni/univDetailSelection.do?menuId=PCUVTINF2000&searchSyr=2025&unvCd=0000034",
+      "local_path": "입시결과_공식/대입정보포털/2025/0000034.html",
+      "status": "downloaded"
+    },
+    {
+      "university": "대진대",
+      "query": "대진대학교",
+      "adiga_code": "0000097",
+      "adiga_label": "대진대학교[본교]",
+      "candidate_count": 1,
+      "all_candidates": [
+        {
+          "code": "0000097",
+          "label": "대진대학교[본교]"
+        }
+      ],
+      "detail_url": "https://www.adiga.kr/ucp/uvt/uni/univDetailSelection.do?menuId=PCUVTINF2000&searchSyr=2025&unvCd=0000097",
+      "local_path": "입시결과_공식/대입정보포털/2025/0000097.html",
+      "status": "downloaded"
+    },
+    {
+      "university": "덕성여대",
+      "query": "덕성여자대학교",
+      "adiga_code": "0000099",
+      "adiga_label": "덕성여자대학교[본교]",
+      "candidate_count": 1,
+      "all_candidates": [
+        {
+          "code": "0000099",
+          "label": "덕성여자대학교[본교]"
+        }
+      ],
+      "detail_url": "https://www.adiga.kr/ucp/uvt/uni/univDetailSelection.do?menuId=PCUVTINF2000&searchSyr=2025&unvCd=0000099",
+      "local_path": "입시결과_공식/대입정보포털/2025/0000099.html",
+      "status": "downloaded"
+    },
+    {
+      "university": "동명대",
+      "query": "동명대학교",
+      "adiga_code": "0000235",
+      "adiga_label": "동명대학교[본교]",
+      "candidate_count": 1,
+      "all_candidates": [
+        {
+          "code": "0000235",
+          "label": "동명대학교[본교]"
+        }
+      ],
+      "detail_url": "https://www.adiga.kr/ucp/uvt/uni/univDetailSelection.do?menuId=PCUVTINF2000&searchSyr=2025&unvCd=0000235",
+      "local_path": "입시결과_공식/대입정보포털/2025/0000235.html",
+      "status": "downloaded"
+    },
+    {
+      "university": "동서대",
+      "query": "동서대학교",
+      "adiga_code": "0000103",
+      "adiga_label": "동서대학교[본교]",
+      "candidate_count": 1,
+      "all_candidates": [
+        {
+          "code": "0000103",
+          "label": "동서대학교[본교]"
+        }
+      ],
+      "detail_url": "https://www.adiga.kr/ucp/uvt/uni/univDetailSelection.do?menuId=PCUVTINF2000&searchSyr=2025&unvCd=0000103",
+      "local_path": "입시결과_공식/대입정보포털/2025/0000103.html",
+      "status": "downloaded"
+    },
+    {
+      "university": "동아대",
+      "query": "동아대학교",
+      "adiga_code": "0000105",
+      "adiga_label": "동아대학교[본교]",
+      "candidate_count": 1,
+      "all_candidates": [
+        {
+          "code": "0000105",
+          "label": "동아대학교[본교]"
+        }
+      ],
+      "detail_url": "https://www.adiga.kr/ucp/uvt/uni/univDetailSelection.do?menuId=PCUVTINF2000&searchSyr=2025&unvCd=0000105",
+      "local_path": "입시결과_공식/대입정보포털/2025/0000105.html",
+      "status": "downloaded"
+    },
+    {
+      "university": "동양대",
+      "query": "동양대학교",
+      "adiga_code": "0000106",
+      "adiga_label": "동양대학교[본교]",
+      "candidate_count": 1,
+      "all_candidates": [
+        {
+          "code": "0000106",
+          "label": "동양대학교[본교]"
+        }
+      ],
+      "detail_url": "https://www.adiga.kr/ucp/uvt/uni/univDetailSelection.do?menuId=PCUVTINF2000&searchSyr=2025&unvCd=0000106",
+      "local_path": "입시결과_공식/대입정보포털/2025/0000106.html",
+      "status": "downloaded"
+    },
+    {
+      "university": "동의대",
+      "query": "동의대학교",
+      "adiga_code": "0000107",
+      "adiga_label": "동의대학교[본교]",
+      "candidate_count": 1,
+      "all_candidates": [
+        {
+          "code": "0000107",
+          "label": "동의대학교[본교]"
+        }
+      ],
+      "detail_url": "https://www.adiga.kr/ucp/uvt/uni/univDetailSelection.do?menuId=PCUVTINF2000&searchSyr=2025&unvCd=0000107",
+      "local_path": "입시결과_공식/대입정보포털/2025/0000107.html",
+      "status": "downloaded"
+    },
+    {
+      "university": "명지대",
+      "query": "명지대학교",
+      "adiga_code": "0000109",
+      "adiga_label": "명지대학교[본교]",
+      "candidate_count": 2,
+      "all_candidates": [
+        {
+          "code": "0000109",
+          "label": "명지대학교[본교]"
+        },
+        {
+          "code": "0000111",
+          "label": "명지대학교[제2캠퍼스]"
+        }
+      ],
+      "detail_url": "https://www.adiga.kr/ucp/uvt/uni/univDetailSelection.do?menuId=PCUVTINF2000&searchSyr=2025&unvCd=0000109",
+      "local_path": "입시결과_공식/대입정보포털/2025/0000109.html",
+      "status": "downloaded"
+    },
+    {
+      "university": "명지대(용인)",
+      "query": "명지대학교",
+      "adiga_code": "0000109",
+      "adiga_label": "명지대학교[본교]",
+      "candidate_count": 2,
+      "all_candidates": [
+        {
+          "code": "0000109",
+          "label": "명지대학교[본교]"
+        },
+        {
+          "code": "0000111",
+          "label": "명지대학교[제2캠퍼스]"
+        }
+      ],
+      "detail_url": "https://www.adiga.kr/ucp/uvt/uni/univDetailSelection.do?menuId=PCUVTINF2000&searchSyr=2025&unvCd=0000109",
+      "local_path": "입시결과_공식/대입정보포털/2025/0000109.html",
+      "status": "downloaded"
+    },
+    {
+      "university": "부산대",
+      "query": "부산대학교",
+      "adiga_code": "0000014",
+      "adiga_label": "부산대학교[본교]",
+      "candidate_count": 1,
+      "all_candidates": [
+        {
+          "code": "0000014",
+          "label": "부산대학교[본교]"
+        }
+      ],
+      "detail_url": "https://www.adiga.kr/ucp/uvt/uni/univDetailSelection.do?menuId=PCUVTINF2000&searchSyr=2025&unvCd=0000014",
+      "local_path": "입시결과_공식/대입정보포털/2025/0000014.html",
+      "status": "downloaded"
+    },
+    {
+      "university": "삼육대",
+      "query": "삼육대학교",
+      "adiga_code": "0000116",
+      "adiga_label": "삼육대학교[본교]",
+      "candidate_count": 1,
+      "all_candidates": [
+        {
+          "code": "0000116",
+          "label": "삼육대학교[본교]"
+        }
+      ],
+      "detail_url": "https://www.adiga.kr/ucp/uvt/uni/univDetailSelection.do?menuId=PCUVTINF2000&searchSyr=2025&unvCd=0000116",
+      "local_path": "입시결과_공식/대입정보포털/2025/0000116.html",
+      "status": "downloaded"
+    },
+    {
+      "university": "서강대",
+      "query": "서강대학교",
+      "adiga_code": "0000120",
+      "adiga_label": "서강대학교[본교]",
+      "candidate_count": 1,
+      "all_candidates": [
+        {
+          "code": "0000120",
+          "label": "서강대학교[본교]"
+        }
+      ],
+      "detail_url": "https://www.adiga.kr/ucp/uvt/uni/univDetailSelection.do?menuId=PCUVTINF2000&searchSyr=2025&unvCd=0000120",
+      "local_path": "입시결과_공식/대입정보포털/2025/0000120.html",
+      "status": "downloaded"
+    },
+    {
+      "university": "서경대",
+      "query": "서경대학교",
+      "adiga_code": "0000121",
+      "adiga_label": "서경대학교[본교]",
+      "candidate_count": 1,
+      "all_candidates": [
+        {
+          "code": "0000121",
+          "label": "서경대학교[본교]"
+        }
+      ],
+      "detail_url": "https://www.adiga.kr/ucp/uvt/uni/univDetailSelection.do?menuId=PCUVTINF2000&searchSyr=2025&unvCd=0000121",
+      "local_path": "입시결과_공식/대입정보포털/2025/0000121.html",
+      "status": "downloaded"
+    },
+    {
+      "university": "서울기독대",
+      "query": "서울기독대학교",
+      "adiga_code": "0000098",
+      "adiga_label": "서울기독대학교[본교]",
+      "candidate_count": 1,
+      "all_candidates": [
+        {
+          "code": "0000098",
+          "label": "서울기독대학교[본교]"
+        }
+      ],
+      "detail_url": "https://www.adiga.kr/ucp/uvt/uni/univDetailSelection.do?menuId=PCUVTINF2000&searchSyr=2025&unvCd=0000098",
+      "local_path": "입시결과_공식/대입정보포털/2025/0000098.html",
+      "status": "downloaded"
+    },
+    {
+      "university": "서울대",
+      "query": "서울대학교",
+      "adiga_code": "0000019",
+      "adiga_label": "서울대학교[본교]",
+      "candidate_count": 2,
+      "all_candidates": [
+        {
+          "code": "0000245",
+          "label": "남서울대학교[본교]"
+        },
+        {
+          "code": "0000019",
+          "label": "서울대학교[본교]"
+        }
+      ],
+      "detail_url": "https://www.adiga.kr/ucp/uvt/uni/univDetailSelection.do?menuId=PCUVTINF2000&searchSyr=2025&unvCd=0000019",
+      "local_path": "입시결과_공식/대입정보포털/2025/0000019.html",
+      "status": "downloaded"
+    },
+    {
+      "university": "서울시립대",
+      "query": "서울시립대학교",
+      "adiga_code": "0000040",
+      "adiga_label": "서울시립대학교[본교]",
+      "candidate_count": 1,
+      "all_candidates": [
+        {
+          "code": "0000040",
+          "label": "서울시립대학교[본교]"
+        }
+      ],
+      "detail_url": "https://www.adiga.kr/ucp/uvt/uni/univDetailSelection.do?menuId=PCUVTINF2000&searchSyr=2025&unvCd=0000040",
+      "local_path": "입시결과_공식/대입정보포털/2025/0000040.html",
+      "status": "downloaded"
+    },
+    {
+      "university": "서울신학대",
+      "query": "서울신학대학교",
+      "adiga_code": "0000125",
+      "adiga_label": "서울신학대학교[본교]",
+      "candidate_count": 1,
+      "all_candidates": [
+        {
+          "code": "0000125",
+          "label": "서울신학대학교[본교]"
+        }
+      ],
+      "detail_url": "https://www.adiga.kr/ucp/uvt/uni/univDetailSelection.do?menuId=PCUVTINF2000&searchSyr=2025&unvCd=0000125",
+      "local_path": "입시결과_공식/대입정보포털/2025/0000125.html",
+      "status": "downloaded"
+    },
+    {
+      "university": "서울여대",
+      "query": "서울여자대학교",
+      "adiga_code": "0000126",
+      "adiga_label": "서울여자대학교[본교]",
+      "candidate_count": 1,
+      "all_candidates": [
+        {
+          "code": "0000126",
+          "label": "서울여자대학교[본교]"
+        }
+      ],
+      "detail_url": "https://www.adiga.kr/ucp/uvt/uni/univDetailSelection.do?menuId=PCUVTINF2000&searchSyr=2025&unvCd=0000126",
+      "local_path": "입시결과_공식/대입정보포털/2025/0000126.html",
+      "status": "downloaded"
+    },
+    {
+      "university": "성결대",
+      "query": "성결대학교",
+      "adiga_code": "0000131",
+      "adiga_label": "성결대학교[본교]",
+      "candidate_count": 1,
+      "all_candidates": [
+        {
+          "code": "0000131",
+          "label": "성결대학교[본교]"
+        }
+      ],
+      "detail_url": "https://www.adiga.kr/ucp/uvt/uni/univDetailSelection.do?menuId=PCUVTINF2000&searchSyr=2025&unvCd=0000131",
+      "local_path": "입시결과_공식/대입정보포털/2025/0000131.html",
+      "status": "downloaded"
+    },
+    {
+      "university": "성공회대",
+      "query": "성공회대학교",
+      "adiga_code": "0000132",
+      "adiga_label": "성공회대학교[본교]",
+      "candidate_count": 1,
+      "all_candidates": [
+        {
+          "code": "0000132",
+          "label": "성공회대학교[본교]"
+        }
+      ],
+      "detail_url": "https://www.adiga.kr/ucp/uvt/uni/univDetailSelection.do?menuId=PCUVTINF2000&searchSyr=2025&unvCd=0000132",
+      "local_path": "입시결과_공식/대입정보포털/2025/0000132.html",
+      "status": "downloaded"
+    },
+    {
+      "university": "성균관대",
+      "query": "성균관대학교",
+      "adiga_code": "0000133",
+      "adiga_label": "성균관대학교[본교]",
+      "candidate_count": 1,
+      "all_candidates": [
+        {
+          "code": "0000133",
+          "label": "성균관대학교[본교]"
+        }
+      ],
+      "detail_url": "https://www.adiga.kr/ucp/uvt/uni/univDetailSelection.do?menuId=PCUVTINF2000&searchSyr=2025&unvCd=0000133",
+      "local_path": "입시결과_공식/대입정보포털/2025/0000133.html",
+      "status": "downloaded"
+    },
+    {
+      "university": "세종대",
+      "query": "세종대학교",
+      "adiga_code": "0000138",
+      "adiga_label": "세종대학교[본교]",
+      "candidate_count": 1,
+      "all_candidates": [
+        {
+          "code": "0000138",
+          "label": "세종대학교[본교]"
+        }
+      ],
+      "detail_url": "https://www.adiga.kr/ucp/uvt/uni/univDetailSelection.do?menuId=PCUVTINF2000&searchSyr=2025&unvCd=0000138",
+      "local_path": "입시결과_공식/대입정보포털/2025/0000138.html",
+      "status": "downloaded"
+    },
+    {
+      "university": "수원대",
+      "query": "수원대학교",
+      "adiga_code": "0000140",
+      "adiga_label": "수원대학교[본교]",
+      "candidate_count": 1,
+      "all_candidates": [
+        {
+          "code": "0000140",
+          "label": "수원대학교[본교]"
+        }
+      ],
+      "detail_url": "https://www.adiga.kr/ucp/uvt/uni/univDetailSelection.do?menuId=PCUVTINF2000&searchSyr=2025&unvCd=0000140",
+      "local_path": "입시결과_공식/대입정보포털/2025/0000140.html",
+      "status": "downloaded"
+    },
+    {
+      "university": "숙명여대",
+      "query": "숙명여자대학교",
+      "adiga_code": "0000141",
+      "adiga_label": "숙명여자대학교[본교]",
+      "candidate_count": 1,
+      "all_candidates": [
+        {
+          "code": "0000141",
+          "label": "숙명여자대학교[본교]"
+        }
+      ],
+      "detail_url": "https://www.adiga.kr/ucp/uvt/uni/univDetailSelection.do?menuId=PCUVTINF2000&searchSyr=2025&unvCd=0000141",
+      "local_path": "입시결과_공식/대입정보포털/2025/0000141.html",
+      "status": "downloaded"
+    },
+    {
+      "university": "숭실대",
+      "query": "숭실대학교",
+      "adiga_code": "0000143",
+      "adiga_label": "숭실대학교[본교]",
+      "candidate_count": 1,
+      "all_candidates": [
+        {
+          "code": "0000143",
+          "label": "숭실대학교[본교]"
+        }
+      ],
+      "detail_url": "https://www.adiga.kr/ucp/uvt/uni/univDetailSelection.do?menuId=PCUVTINF2000&searchSyr=2025&unvCd=0000143",
+      "local_path": "입시결과_공식/대입정보포털/2025/0000143.html",
+      "status": "downloaded"
+    },
+    {
+      "university": "신한대",
+      "query": "신한대학교",
+      "adiga_code": "0002712",
+      "adiga_label": "신한대학교[본교]",
+      "candidate_count": 2,
+      "all_candidates": [
+        {
+          "code": "0002712",
+          "label": "신한대학교[본교]"
+        },
+        {
+          "code": "0002800",
+          "label": "신한대학교[제2캠퍼스]"
+        }
+      ],
+      "detail_url": "https://www.adiga.kr/ucp/uvt/uni/univDetailSelection.do?menuId=PCUVTINF2000&searchSyr=2025&unvCd=0002712",
+      "local_path": "입시결과_공식/대입정보포털/2025/0002712.html",
+      "status": "downloaded"
+    },
+    {
+      "university": "아주대",
+      "query": "아주대학교",
+      "adiga_code": "0000146",
+      "adiga_label": "아주대학교[본교]",
+      "candidate_count": 1,
+      "all_candidates": [
+        {
+          "code": "0000146",
+          "label": "아주대학교[본교]"
+        }
+      ],
+      "detail_url": "https://www.adiga.kr/ucp/uvt/uni/univDetailSelection.do?menuId=PCUVTINF2000&searchSyr=2025&unvCd=0000146",
+      "local_path": "입시결과_공식/대입정보포털/2025/0000146.html",
+      "status": "downloaded"
+    },
+    {
+      "university": "안양대",
+      "query": "안양대학교",
+      "adiga_code": "0000147",
+      "adiga_label": "안양대학교[본교]",
+      "candidate_count": 2,
+      "all_candidates": [
+        {
+          "code": "0000147",
+          "label": "안양대학교[본교]"
+        },
+        {
+          "code": "0000148",
+          "label": "안양대학교[제2캠퍼스]"
+        }
+      ],
+      "detail_url": "https://www.adiga.kr/ucp/uvt/uni/univDetailSelection.do?menuId=PCUVTINF2000&searchSyr=2025&unvCd=0000147",
+      "local_path": "입시결과_공식/대입정보포털/2025/0000147.html",
+      "status": "downloaded"
+    },
+    {
+      "university": "연세대",
+      "query": "연세대학교",
+      "adiga_code": "0000149",
+      "adiga_label": "연세대학교[본교]",
+      "candidate_count": 2,
+      "all_candidates": [
+        {
+          "code": "0000150",
+          "label": "연세대학교(미래)[분교]"
+        },
+        {
+          "code": "0000149",
+          "label": "연세대학교[본교]"
+        }
+      ],
+      "detail_url": "https://www.adiga.kr/ucp/uvt/uni/univDetailSelection.do?menuId=PCUVTINF2000&searchSyr=2025&unvCd=0000149",
+      "local_path": "입시결과_공식/대입정보포털/2025/0000149.html",
+      "status": "downloaded"
+    },
+    {
+      "university": "연세대(미래)",
+      "query": "연세대학교(미래)",
+      "adiga_code": "0000150",
+      "adiga_label": "연세대학교(미래)[분교]",
+      "candidate_count": 0,
+      "all_candidates": [],
+      "detail_url": "https://www.adiga.kr/ucp/uvt/uni/univDetailSelection.do?menuId=PCUVTINF2000&searchSyr=2025&unvCd=0000150",
+      "local_path": "입시결과_공식/대입정보포털/2025/0000150.html",
+      "status": "downloaded"
+    },
+    {
+      "university": "영남대",
+      "query": "영남대학교",
+      "adiga_code": "0000151",
+      "adiga_label": "영남대학교[본교]",
+      "candidate_count": 1,
+      "all_candidates": [
+        {
+          "code": "0000151",
+          "label": "영남대학교[본교]"
+        }
+      ],
+      "detail_url": "https://www.adiga.kr/ucp/uvt/uni/univDetailSelection.do?menuId=PCUVTINF2000&searchSyr=2025&unvCd=0000151",
+      "local_path": "입시결과_공식/대입정보포털/2025/0000151.html",
+      "status": "downloaded"
+    },
+    {
+      "university": "용인대",
+      "query": "용인대학교",
+      "adiga_code": "0000156",
+      "adiga_label": "용인대학교[본교]",
+      "candidate_count": 1,
+      "all_candidates": [
+        {
+          "code": "0000156",
+          "label": "용인대학교[본교]"
+        }
+      ],
+      "detail_url": "https://www.adiga.kr/ucp/uvt/uni/univDetailSelection.do?menuId=PCUVTINF2000&searchSyr=2025&unvCd=0000156",
+      "local_path": "입시결과_공식/대입정보포털/2025/0000156.html",
+      "status": "downloaded"
+    },
+    {
+      "university": "울산대",
+      "query": "울산대학교",
+      "adiga_code": "0000158",
+      "adiga_label": "울산대학교[본교]",
+      "candidate_count": 1,
+      "all_candidates": [
+        {
+          "code": "0000158",
+          "label": "울산대학교[본교]"
+        }
+      ],
+      "detail_url": "https://www.adiga.kr/ucp/uvt/uni/univDetailSelection.do?menuId=PCUVTINF2000&searchSyr=2025&unvCd=0000158",
+      "local_path": "입시결과_공식/대입정보포털/2025/0000158.html",
+      "status": "downloaded"
+    },
+    {
+      "university": "원광대",
+      "query": "원광대학교",
+      "adiga_code": "0000159",
+      "adiga_label": "원광대학교[본교]",
+      "candidate_count": 1,
+      "all_candidates": [
+        {
+          "code": "0000159",
+          "label": "원광대학교[본교]"
+        }
+      ],
+      "detail_url": "https://www.adiga.kr/ucp/uvt/uni/univDetailSelection.do?menuId=PCUVTINF2000&searchSyr=2025&unvCd=0000159",
+      "local_path": "입시결과_공식/대입정보포털/2025/0000159.html",
+      "status": "downloaded"
+    },
+    {
+      "university": "을지대",
+      "query": "을지대학교",
+      "adiga_code": "0000161",
+      "adiga_label": "을지대학교[본교]",
+      "candidate_count": 3,
+      "all_candidates": [
+        {
+          "code": "0000161",
+          "label": "을지대학교[본교]"
+        },
+        {
+          "code": "0000162",
+          "label": "을지대학교[제2캠퍼스]"
+        },
+        {
+          "code": "0002911",
+          "label": "을지대학교[제3캠퍼스]"
+        }
+      ],
+      "detail_url": "https://www.adiga.kr/ucp/uvt/uni/univDetailSelection.do?menuId=PCUVTINF2000&searchSyr=2025&unvCd=0000161",
+      "local_path": "입시결과_공식/대입정보포털/2025/0000161.html",
+      "status": "downloaded"
+    },
+    {
+      "university": "인제대",
+      "query": "인제대학교",
+      "adiga_code": "0000164",
+      "adiga_label": "인제대학교[본교]",
+      "candidate_count": 1,
+      "all_candidates": [
+        {
+          "code": "0000164",
+          "label": "인제대학교[본교]"
+        }
+      ],
+      "detail_url": "https://www.adiga.kr/ucp/uvt/uni/univDetailSelection.do?menuId=PCUVTINF2000&searchSyr=2025&unvCd=0000164",
+      "local_path": "입시결과_공식/대입정보포털/2025/0000164.html",
+      "status": "downloaded"
+    },
+    {
+      "university": "인천대",
+      "query": "인천대학교",
+      "adiga_code": "0002660",
+      "adiga_label": "인천대학교[본교]",
+      "candidate_count": 1,
+      "all_candidates": [
+        {
+          "code": "0002660",
+          "label": "인천대학교[본교]"
+        }
+      ],
+      "detail_url": "https://www.adiga.kr/ucp/uvt/uni/univDetailSelection.do?menuId=PCUVTINF2000&searchSyr=2025&unvCd=0002660",
+      "local_path": "입시결과_공식/대입정보포털/2025/0002660.html",
+      "status": "downloaded"
+    },
+    {
+      "university": "인하대",
+      "query": "인하대학교",
+      "adiga_code": "0000169",
+      "adiga_label": "인하대학교[본교]",
+      "candidate_count": 1,
+      "all_candidates": [
+        {
+          "code": "0000169",
+          "label": "인하대학교[본교]"
+        }
+      ],
+      "detail_url": "https://www.adiga.kr/ucp/uvt/uni/univDetailSelection.do?menuId=PCUVTINF2000&searchSyr=2025&unvCd=0000169",
+      "local_path": "입시결과_공식/대입정보포털/2025/0000169.html",
+      "status": "downloaded"
+    },
+    {
+      "university": "전남대",
+      "query": "전남대학교",
+      "adiga_code": "0000023",
+      "adiga_label": "전남대학교[본교]",
+      "candidate_count": 2,
+      "all_candidates": [
+        {
+          "code": "0000023",
+          "label": "전남대학교[본교]"
+        },
+        {
+          "code": "0000024",
+          "label": "전남대학교[제2캠퍼스]"
+        }
+      ],
+      "detail_url": "https://www.adiga.kr/ucp/uvt/uni/univDetailSelection.do?menuId=PCUVTINF2000&searchSyr=2025&unvCd=0000023",
+      "local_path": "입시결과_공식/대입정보포털/2025/0000023.html",
+      "status": "downloaded"
+    },
+    {
+      "university": "전남대(여수)",
+      "query": "전남대학교",
+      "adiga_code": "0000023",
+      "adiga_label": "전남대학교[본교]",
+      "candidate_count": 2,
+      "all_candidates": [
+        {
+          "code": "0000023",
+          "label": "전남대학교[본교]"
+        },
+        {
+          "code": "0000024",
+          "label": "전남대학교[제2캠퍼스]"
+        }
+      ],
+      "detail_url": "https://www.adiga.kr/ucp/uvt/uni/univDetailSelection.do?menuId=PCUVTINF2000&searchSyr=2025&unvCd=0000023",
+      "local_path": "입시결과_공식/대입정보포털/2025/0000023.html",
+      "status": "downloaded"
+    },
+    {
+      "university": "전북대",
+      "query": "전북대학교",
+      "adiga_code": "0000025",
+      "adiga_label": "전북대학교[본교]",
+      "candidate_count": 1,
+      "all_candidates": [
+        {
+          "code": "0000025",
+          "label": "전북대학교[본교]"
+        }
+      ],
+      "detail_url": "https://www.adiga.kr/ucp/uvt/uni/univDetailSelection.do?menuId=PCUVTINF2000&searchSyr=2025&unvCd=0000025",
+      "local_path": "입시결과_공식/대입정보포털/2025/0000025.html",
+      "status": "downloaded"
+    },
+    {
+      "university": "제주대",
+      "query": "제주대학교",
+      "adiga_code": "0000027",
+      "adiga_label": "제주대학교[본교]",
+      "candidate_count": 1,
+      "all_candidates": [
+        {
+          "code": "0000027",
+          "label": "제주대학교[본교]"
+        }
+      ],
+      "detail_url": "https://www.adiga.kr/ucp/uvt/uni/univDetailSelection.do?menuId=PCUVTINF2000&searchSyr=2025&unvCd=0000027",
+      "local_path": "입시결과_공식/대입정보포털/2025/0000027.html",
+      "status": "downloaded"
+    },
+    {
+      "university": "조선대",
+      "query": "조선대학교",
+      "adiga_code": "0000172",
+      "adiga_label": "조선대학교[본교]",
+      "candidate_count": 1,
+      "all_candidates": [
+        {
+          "code": "0000172",
+          "label": "조선대학교[본교]"
+        }
+      ],
+      "detail_url": "https://www.adiga.kr/ucp/uvt/uni/univDetailSelection.do?menuId=PCUVTINF2000&searchSyr=2025&unvCd=0000172",
+      "local_path": "입시결과_공식/대입정보포털/2025/0000172.html",
+      "status": "downloaded"
+    },
+    {
+      "university": "중부대(고양)",
+      "query": "중부대학교",
+      "adiga_code": "0000173",
+      "adiga_label": "중부대학교[본교]",
+      "candidate_count": 1,
+      "all_candidates": [
+        {
+          "code": "0000173",
+          "label": "중부대학교[본교]"
+        }
+      ],
+      "detail_url": "https://www.adiga.kr/ucp/uvt/uni/univDetailSelection.do?menuId=PCUVTINF2000&searchSyr=2025&unvCd=0000173",
+      "local_path": "입시결과_공식/대입정보포털/2025/0000173.html",
+      "status": "downloaded"
+    },
+    {
+      "university": "중앙대",
+      "query": "중앙대학교",
+      "adiga_code": "0000175",
+      "adiga_label": "중앙대학교[본교]",
+      "candidate_count": 2,
+      "all_candidates": [
+        {
+          "code": "0000175",
+          "label": "중앙대학교[본교]"
+        },
+        {
+          "code": "0000174",
+          "label": "중앙대학교[제2캠퍼스]"
+        }
+      ],
+      "detail_url": "https://www.adiga.kr/ucp/uvt/uni/univDetailSelection.do?menuId=PCUVTINF2000&searchSyr=2025&unvCd=0000175",
+      "local_path": "입시결과_공식/대입정보포털/2025/0000175.html",
+      "status": "downloaded"
+    },
+    {
+      "university": "충남대",
+      "query": "충남대학교",
+      "adiga_code": "0000029",
+      "adiga_label": "충남대학교[본교]",
+      "candidate_count": 1,
+      "all_candidates": [
+        {
+          "code": "0000029",
+          "label": "충남대학교[본교]"
+        }
+      ],
+      "detail_url": "https://www.adiga.kr/ucp/uvt/uni/univDetailSelection.do?menuId=PCUVTINF2000&searchSyr=2025&unvCd=0000029",
+      "local_path": "입시결과_공식/대입정보포털/2025/0000029.html",
+      "status": "downloaded"
+    },
+    {
+      "university": "충북대",
+      "query": "충북대학교",
+      "adiga_code": "0000030",
+      "adiga_label": "충북대학교[본교]",
+      "candidate_count": 1,
+      "all_candidates": [
+        {
+          "code": "0000030",
+          "label": "충북대학교[본교]"
+        }
+      ],
+      "detail_url": "https://www.adiga.kr/ucp/uvt/uni/univDetailSelection.do?menuId=PCUVTINF2000&searchSyr=2025&unvCd=0000030",
+      "local_path": "입시결과_공식/대입정보포털/2025/0000030.html",
+      "status": "downloaded"
+    },
+    {
+      "university": "칼빈대",
+      "query": "칼빈대학교",
+      "adiga_code": "0000184",
+      "adiga_label": "칼빈대학교[본교]",
+      "candidate_count": 1,
+      "all_candidates": [
+        {
+          "code": "0000184",
+          "label": "칼빈대학교[본교]"
+        }
+      ],
+      "detail_url": "https://www.adiga.kr/ucp/uvt/uni/univDetailSelection.do?menuId=PCUVTINF2000&searchSyr=2025&unvCd=0000184",
+      "local_path": "입시결과_공식/대입정보포털/2025/0000184.html",
+      "status": "downloaded"
+    },
+    {
+      "university": "평택대",
+      "query": "평택대학교",
+      "adiga_code": "0000186",
+      "adiga_label": "평택대학교[본교]",
+      "candidate_count": 1,
+      "all_candidates": [
+        {
+          "code": "0000186",
+          "label": "평택대학교[본교]"
+        }
+      ],
+      "detail_url": "https://www.adiga.kr/ucp/uvt/uni/univDetailSelection.do?menuId=PCUVTINF2000&searchSyr=2025&unvCd=0000186",
+      "local_path": "입시결과_공식/대입정보포털/2025/0000186.html",
+      "status": "downloaded"
+    },
+    {
+      "university": "한경국립대",
+      "query": "한경국립대학교",
+      "adiga_code": "0000037",
+      "adiga_label": "한경국립대학교[본교]",
+      "candidate_count": 1,
+      "all_candidates": [
+        {
+          "code": "0000037",
+          "label": "한경국립대학교[본교]"
+        }
+      ],
+      "detail_url": "https://www.adiga.kr/ucp/uvt/uni/univDetailSelection.do?menuId=PCUVTINF2000&searchSyr=2025&unvCd=0000037",
+      "local_path": "입시결과_공식/대입정보포털/2025/0000037.html",
+      "status": "downloaded"
+    },
+    {
+      "university": "한국공학대",
+      "query": "한국공학대학교",
+      "adiga_code": "0000247",
+      "adiga_label": "한국공학대학교[본교]",
+      "candidate_count": 1,
+      "all_candidates": [
+        {
+          "code": "0000247",
+          "label": "한국공학대학교[본교]"
+        }
+      ],
+      "detail_url": "https://www.adiga.kr/ucp/uvt/uni/univDetailSelection.do?menuId=PCUVTINF2000&searchSyr=2025&unvCd=0000247",
+      "local_path": "입시결과_공식/대입정보포털/2025/0000247.html",
+      "status": "downloaded"
+    },
+    {
+      "university": "한국기술교육대",
+      "query": "한국기술교육대학교",
+      "adiga_code": "0000189",
+      "adiga_label": "한국기술교육대학교[본교]",
+      "candidate_count": 1,
+      "all_candidates": [
+        {
+          "code": "0000189",
+          "label": "한국기술교육대학교[본교]"
+        }
+      ],
+      "detail_url": "https://www.adiga.kr/ucp/uvt/uni/univDetailSelection.do?menuId=PCUVTINF2000&searchSyr=2025&unvCd=0000189",
+      "local_path": "입시결과_공식/대입정보포털/2025/0000189.html",
+      "status": "downloaded"
+    },
+    {
+      "university": "한국항공대",
+      "query": "한국항공대학교",
+      "adiga_code": "0000194",
+      "adiga_label": "한국항공대학교[본교]",
+      "candidate_count": 1,
+      "all_candidates": [
+        {
+          "code": "0000194",
+          "label": "한국항공대학교[본교]"
+        }
+      ],
+      "detail_url": "https://www.adiga.kr/ucp/uvt/uni/univDetailSelection.do?menuId=PCUVTINF2000&searchSyr=2025&unvCd=0000194",
+      "local_path": "입시결과_공식/대입정보포털/2025/0000194.html",
+      "status": "downloaded"
+    },
+    {
+      "university": "한라대",
+      "query": "한라대학교",
+      "adiga_code": "0000197",
+      "adiga_label": "한라대학교[본교]",
+      "candidate_count": 1,
+      "all_candidates": [
+        {
+          "code": "0000197",
+          "label": "한라대학교[본교]"
+        }
+      ],
+      "detail_url": "https://www.adiga.kr/ucp/uvt/uni/univDetailSelection.do?menuId=PCUVTINF2000&searchSyr=2025&unvCd=0000197",
+      "local_path": "입시결과_공식/대입정보포털/2025/0000197.html",
+      "status": "downloaded"
+    },
+    {
+      "university": "한성대",
+      "query": "한성대학교",
+      "adiga_code": "0000200",
+      "adiga_label": "한성대학교[본교]",
+      "candidate_count": 1,
+      "all_candidates": [
+        {
+          "code": "0000200",
+          "label": "한성대학교[본교]"
+        }
+      ],
+      "detail_url": "https://www.adiga.kr/ucp/uvt/uni/univDetailSelection.do?menuId=PCUVTINF2000&searchSyr=2025&unvCd=0000200",
+      "local_path": "입시결과_공식/대입정보포털/2025/0000200.html",
+      "status": "downloaded"
+    },
+    {
+      "university": "한세대",
+      "query": "한세대학교",
+      "adiga_code": "0000201",
+      "adiga_label": "한세대학교[본교]",
+      "candidate_count": 1,
+      "all_candidates": [
+        {
+          "code": "0000201",
+          "label": "한세대학교[본교]"
+        }
+      ],
+      "detail_url": "https://www.adiga.kr/ucp/uvt/uni/univDetailSelection.do?menuId=PCUVTINF2000&searchSyr=2025&unvCd=0000201",
+      "local_path": "입시결과_공식/대입정보포털/2025/0000201.html",
+      "status": "downloaded"
+    },
+    {
+      "university": "한신대",
+      "query": "한신대학교",
+      "adiga_code": "0000202",
+      "adiga_label": "한신대학교[본교]",
+      "candidate_count": 1,
+      "all_candidates": [
+        {
+          "code": "0000202",
+          "label": "한신대학교[본교]"
+        }
+      ],
+      "detail_url": "https://www.adiga.kr/ucp/uvt/uni/univDetailSelection.do?menuId=PCUVTINF2000&searchSyr=2025&unvCd=0000202",
+      "local_path": "입시결과_공식/대입정보포털/2025/0000202.html",
+      "status": "downloaded"
+    },
+    {
+      "university": "한양대",
+      "query": "한양대학교",
+      "adiga_code": "0000203",
+      "adiga_label": "한양대학교[본교]",
+      "candidate_count": 2,
+      "all_candidates": [
+        {
+          "code": "0000204",
+          "label": "한양대학교(ERICA)[분교]"
+        },
+        {
+          "code": "0000203",
+          "label": "한양대학교[본교]"
+        }
+      ],
+      "detail_url": "https://www.adiga.kr/ucp/uvt/uni/univDetailSelection.do?menuId=PCUVTINF2000&searchSyr=2025&unvCd=0000203",
+      "local_path": "입시결과_공식/대입정보포털/2025/0000203.html",
+      "status": "downloaded"
+    },
+    {
+      "university": "한양대(ERICA)",
+      "query": "한양대학교",
+      "adiga_code": "0000204",
+      "adiga_label": "한양대학교(ERICA)[분교]",
+      "candidate_count": 2,
+      "all_candidates": [
+        {
+          "code": "0000204",
+          "label": "한양대학교(ERICA)[분교]"
+        },
+        {
+          "code": "0000203",
+          "label": "한양대학교[본교]"
+        }
+      ],
+      "detail_url": "https://www.adiga.kr/ucp/uvt/uni/univDetailSelection.do?menuId=PCUVTINF2000&searchSyr=2025&unvCd=0000204",
+      "local_path": "입시결과_공식/대입정보포털/2025/0000204.html",
+      "status": "downloaded"
+    },
+    {
+      "university": "협성대",
+      "query": "협성대학교",
+      "adiga_code": "0000207",
+      "adiga_label": "협성대학교[본교]",
+      "candidate_count": 1,
+      "all_candidates": [
+        {
+          "code": "0000207",
+          "label": "협성대학교[본교]"
+        }
+      ],
+      "detail_url": "https://www.adiga.kr/ucp/uvt/uni/univDetailSelection.do?menuId=PCUVTINF2000&searchSyr=2025&unvCd=0000207",
+      "local_path": "입시결과_공식/대입정보포털/2025/0000207.html",
+      "status": "downloaded"
+    },
+    {
+      "university": "홍익대",
+      "query": "홍익대학교",
+      "adiga_code": "0000212",
+      "adiga_label": "홍익대학교[본교]",
+      "candidate_count": 2,
+      "all_candidates": [
+        {
+          "code": "0000212",
+          "label": "홍익대학교[본교]"
+        },
+        {
+          "code": "0002949",
+          "label": "홍익대학교[제2캠퍼스]"
+        }
+      ],
+      "detail_url": "https://www.adiga.kr/ucp/uvt/uni/univDetailSelection.do?menuId=PCUVTINF2000&searchSyr=2025&unvCd=0000212",
+      "local_path": "입시결과_공식/대입정보포털/2025/0000212.html",
+      "status": "downloaded"
+    },
+    {
+      "university": "화성의과학대",
+      "query": "화성의과학대학교",
+      "adiga_code": "0000233",
+      "adiga_label": "화성의과학대학교[본교]",
+      "candidate_count": 1,
+      "all_candidates": [
+        {
+          "code": "0000233",
+          "label": "화성의과학대학교[본교]"
+        }
+      ],
+      "detail_url": "https://www.adiga.kr/ucp/uvt/uni/univDetailSelection.do?menuId=PCUVTINF2000&searchSyr=2025&unvCd=0000233",
+      "local_path": "입시결과_공식/대입정보포털/2025/0000233.html",
+      "status": "downloaded"
+    }
+  ]
+}

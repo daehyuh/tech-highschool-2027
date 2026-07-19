@@ -1,0 +1,227 @@
+{
+  "imported_universities": 19,
+  "imported_rows": 425,
+  "web": {
+    "result_count": 1765,
+    "institution_count": 62,
+    "program_count": 1124,
+    "grade_result_count": 620
+  },
+  "universities": [
+    {
+      "university": "강남대",
+      "status": "imported",
+      "rows": 6
+    },
+    {
+      "university": "강원대",
+      "status": "imported",
+      "rows": 17
+    },
+    {
+      "university": "경북대",
+      "status": "no_target_result",
+      "rows": 0
+    },
+    {
+      "university": "경성대",
+      "status": "imported",
+      "rows": 63
+    },
+    {
+      "university": "계명대",
+      "status": "imported",
+      "rows": 1
+    },
+    {
+      "university": "고려대",
+      "status": "no_target_result",
+      "rows": 0
+    },
+    {
+      "university": "고려대(세종)",
+      "status": "no_target_result",
+      "rows": 0
+    },
+    {
+      "university": "국립금오공과대",
+      "status": "imported",
+      "rows": 18
+    },
+    {
+      "university": "국립순천대",
+      "status": "imported",
+      "rows": 14
+    },
+    {
+      "university": "동서대",
+      "status": "imported",
+      "rows": 27
+    },
+    {
+      "university": "동아대",
+      "status": "no_target_result",
+      "rows": 0
+    },
+    {
+      "university": "동양대",
+      "status": "imported",
+      "rows": 5
+    },
+    {
+      "university": "동의대",
+      "status": "imported",
+      "rows": 108
+    },
+    {
+      "university": "삼육대",
+      "status": "no_target_result",
+      "rows": 0
+    },
+    {
+      "university": "서울기독대",
+      "status": "no_target_result",
+      "rows": 0
+    },
+    {
+      "university": "서울대",
+      "status": "no_target_result",
+      "rows": 0
+    },
+    {
+      "university": "서울시립대",
+      "status": "no_target_result",
+      "rows": 0
+    },
+    {
+      "university": "성균관대",
+      "status": "no_target_result",
+      "rows": 0
+    },
+    {
+      "university": "숙명여대",
+      "status": "no_target_result",
+      "rows": 0
+    },
+    {
+      "university": "연세대",
+      "status": "no_target_result",
+      "rows": 0
+    },
+    {
+      "university": "연세대(미래)",
+      "status": "imported",
+      "rows": 2
+    },
+    {
+      "university": "영남대",
+      "status": "no_target_result",
+      "rows": 0
+    },
+    {
+      "university": "울산대",
+      "status": "no_target_result",
+      "rows": 0
+    },
+    {
+      "university": "인제대",
+      "status": "imported",
+      "rows": 21
+    },
+    {
+      "university": "인천대",
+      "status": "no_target_result",
+      "rows": 0
+    },
+    {
+      "university": "인하대",
+      "status": "no_target_result",
+      "rows": 0
+    },
+    {
+      "university": "전남대",
+      "status": "imported",
+      "rows": 36
+    },
+    {
+      "university": "전남대(여수)",
+      "status": "ambiguous_shared_code",
+      "rows": 0
+    },
+    {
+      "university": "전북대",
+      "status": "imported",
+      "rows": 12
+    },
+    {
+      "university": "제주대",
+      "status": "imported",
+      "rows": 4
+    },
+    {
+      "university": "조선대",
+      "status": "imported",
+      "rows": 23
+    },
+    {
+      "university": "중부대(고양)",
+      "status": "no_target_result",
+      "rows": 0
+    },
+    {
+      "university": "충남대",
+      "status": "no_target_result",
+      "rows": 0
+    },
+    {
+      "university": "충북대",
+      "status": "imported",
+      "rows": 36
+    },
+    {
+      "university": "칼빈대",
+      "status": "no_target_result",
+      "rows": 0
+    },
+    {
+      "university": "한경국립대",
+      "status": "no_target_result",
+      "rows": 0
+    },
+    {
+      "university": "한국항공대",
+      "status": "no_target_result",
+      "rows": 0
+    },
+    {
+      "university": "한라대",
+      "status": "imported",
+      "rows": 13
+    },
+    {
+      "university": "한성대",
+      "status": "no_target_result",
+      "rows": 0
+    },
+    {
+      "university": "한양대",
+      "status": "no_target_result",
+      "rows": 0
+    },
+    {
+      "university": "협성대",
+      "status": "imported",
+      "rows": 18
+    },
+    {
+      "university": "홍익대",
+      "status": "no_target_result",
+      "rows": 0
+    },
+    {
+      "university": "화성의과학대",
+      "status": "imported",
+      "rows": 1
+    }
+  ]
+}

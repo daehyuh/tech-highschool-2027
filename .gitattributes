@@ -1,0 +1,5 @@
+*.xlsm binary
+*.sqlite binary
+*.png binary
+*.pdf binary
+* text=auto
