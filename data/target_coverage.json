@@ -4,11 +4,11 @@
     "universities_with_pdf": 48,
     "universities_with_candidate_pdf": 38,
     "universities_with_results": 61,
-    "universities_with_grade_results": 40,
+    "universities_with_grade_results": 44,
     "universities_with_source": 82,
     "statuses": {
-      "grade_available": 40,
-      "results_without_grade": 21,
+      "grade_available": 44,
+      "results_without_grade": 17,
       "source_checked_no_result": 21,
       "candidate_not_extracted": 0,
       "pdf_without_target_result": 0,
@@ -761,13 +761,13 @@
       "regions": [
         "경기"
       ],
-      "status": "results_without_grade",
+      "status": "grade_available",
       "pdf_count": 2,
       "candidate_pdf_count": 2,
-      "result_count": 40,
-      "program_count": 35,
-      "grade_result_count": 0,
-      "high_confidence_count": 16,
+      "result_count": 49,
+      "program_count": 37,
+      "grade_result_count": 9,
+      "high_confidence_count": 25,
       "source_count": 3,
       "documents": [
         {
@@ -847,13 +847,13 @@
       "regions": [
         "부산"
       ],
-      "status": "results_without_grade",
+      "status": "grade_available",
       "pdf_count": 2,
       "candidate_pdf_count": 2,
-      "result_count": 69,
-      "program_count": 37,
-      "grade_result_count": 0,
-      "high_confidence_count": 0,
+      "result_count": 103,
+      "program_count": 40,
+      "grade_result_count": 34,
+      "high_confidence_count": 34,
       "source_count": 3,
       "documents": [
         {
@@ -1458,13 +1458,13 @@
       "regions": [
         "경기"
       ],
-      "status": "results_without_grade",
+      "status": "grade_available",
       "pdf_count": 2,
       "candidate_pdf_count": 2,
-      "result_count": 40,
-      "program_count": 34,
-      "grade_result_count": 0,
-      "high_confidence_count": 20,
+      "result_count": 57,
+      "program_count": 45,
+      "grade_result_count": 17,
+      "high_confidence_count": 37,
       "source_count": 3,
       "documents": [
         {
@@ -2885,13 +2885,13 @@
       "regions": [
         "경기"
       ],
-      "status": "results_without_grade",
+      "status": "grade_available",
       "pdf_count": 2,
       "candidate_pdf_count": 2,
-      "result_count": 17,
-      "program_count": 5,
-      "grade_result_count": 0,
-      "high_confidence_count": 17,
+      "result_count": 21,
+      "program_count": 9,
+      "grade_result_count": 4,
+      "high_confidence_count": 21,
       "source_count": 3,
       "documents": [
         {

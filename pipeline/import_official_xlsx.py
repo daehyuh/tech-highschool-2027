@@ -15,6 +15,7 @@ from build_database import DB_PATH, WEB_DATA_PATH, field_group, normalize_progra
 
 ROOT = Path(__file__).resolve().parents[1]
 OFFICIAL_ROOT = ROOT / "입시결과_공식"
+NESIN_ROOT = ROOT / "입시결과_PDF"
 
 
 def column_index(reference: str) -> int:
@@ -307,6 +308,119 @@ def ulsan_results(path: Path) -> list[dict]:
     return output
 
 
+def tongmyong_results(path: Path) -> list[dict]:
+    """Read Tongmyong's vocational-subject column from the one-page result table."""
+    with pdfplumber.open(path) as document:
+        tables = document.pages[0].extract_tables()
+    if len(tables) != 1 or len(tables[0]) < 3:
+        raise ValueError("동명대 입시결과 표 구조가 예상과 다릅니다.")
+
+    table = tables[0]
+    if "특성화고교과" not in (table[0][9] or ""):
+        raise ValueError("동명대 특성화고교과 열을 찾지 못했습니다.")
+    output = []
+    for row_index, cells in enumerate(table[2:], start=2):
+        if len(cells) < 13 or not cells[0] or number(cells[9]) is None:
+            continue
+        metrics = [
+            grade_metric("grade_final_average", "특성화고교과 최종등록자 평균등급", cells[10] or "", "final_registered"),
+            grade_metric("grade_final_70_cut", "특성화고교과 최종등록자 70% CUT", cells[11] or "", "final_registered"),
+        ]
+        if not any(metrics):
+            continue
+        output.append({
+            "university": "동명대", "track": "특성화고교과", "program": cells[0].replace("\n", ""),
+            "page": 1, "table_index": 0, "row": row_index, "reported_year": 2026,
+            "quota": None, "competition_rate": number(cells[9]), "waitlist_rank": number(cells[12]),
+            "metrics": [metric for metric in metrics if metric], "raw": cells,
+        })
+    if len(output) != 34:
+        raise ValueError(f"동명대 모집단위 34개를 예상했지만 {len(output)}개를 찾았습니다.")
+    return output
+
+
+def daejin_results(path: Path) -> list[dict]:
+    """Read Daejin's vocational graduate columns from the off-quota result table."""
+    with pdfplumber.open(path) as document:
+        tables = document.pages[4].extract_tables()
+    if len(tables) != 1 or len(tables[0]) < 3:
+        raise ValueError("대진대 정원외 입시결과 표 구조가 예상과 다릅니다.")
+
+    output = []
+    for row_index, cells in enumerate(tables[0][2:], start=2):
+        if len(cells) < 13 or not (cells[1] or cells[2]) or (cells[1] or "").strip() == "대학 계":
+            continue
+        if number(cells[8]) is None or number(cells[12]) is None:
+            continue
+        program = " ".join(part.replace("\n", "") for part in (cells[1], cells[2]) if part).strip()
+        metric = grade_metric("grade_final_average", "특성화고교졸업자 최종등록자 학생부 평균등급", cells[12], "final_registered")
+        output.append({
+            "university": "대진대", "track": "특성화고교졸업자", "program": program,
+            "page": 5, "table_index": 0, "row": row_index, "reported_year": 2026,
+            "quota": number(cells[8]), "applicants": number(cells[9]),
+            "competition_rate": number(cells[10]), "waitlist_rank": number(cells[11]),
+            "metrics": [metric] if metric else [], "raw": cells,
+        })
+    if len(output) != 9:
+        raise ValueError(f"대진대 모집단위 9개를 예상했지만 {len(output)}개를 찾았습니다.")
+    return output
+
+
+def sungkyul_results(path: Path) -> list[dict]:
+    """Read Sungkyul's in-quota and off-quota vocational graduate rows."""
+    output = []
+    with pdfplumber.open(path) as document:
+        for page_number in (5, 6):
+            tables = document.pages[page_number - 1].extract_tables()
+            if len(tables) != 1:
+                raise ValueError(f"성결대 {page_number}쪽 표 구조가 예상과 다릅니다.")
+            for row_index, cells in enumerate(tables[0][1:], start=1):
+                if len(cells) < 8 or not cells[0] or "특성화고교졸업자" not in cells[0]:
+                    continue
+                metric = grade_metric("grade_final_70_cut", "최종합격자 학생부 70% CUT", cells[6], "final_registered")
+                if not metric:
+                    continue
+                output.append({
+                    "university": "성결대", "track": cells[0], "program": cells[1],
+                    "page": page_number, "table_index": 0, "row": row_index, "reported_year": 2026,
+                    "quota": number(cells[2]), "applicants": number(cells[3]),
+                    "competition_rate": number(cells[4]), "waitlist_rank": number(cells[7]),
+                    "metrics": [metric], "raw": cells,
+                })
+    if len(output) != 17:
+        raise ValueError(f"성결대 모집단위 17개를 예상했지만 {len(output)}개를 찾았습니다.")
+    return output
+
+
+def hanshin_results(path: Path) -> list[dict]:
+    """Read Hanshin's vocational graduate table on page 8."""
+    with pdfplumber.open(path) as document:
+        tables = document.pages[7].extract_tables()
+    table = next((table for table in tables if table and "특성화고교졸업자" in (table[0][0] or "")), None)
+    if table is None:
+        raise ValueError("한신대 특성화고교졸업자 표를 찾지 못했습니다.")
+
+    output = []
+    for row_index, cells in enumerate(table[2:], start=2):
+        if len(cells) < 8 or not cells[1] or cells[1] == "계" or number(cells[7]) is None:
+            continue
+        program = cells[1].replace("\n", "")
+        metrics = [
+            grade_metric("grade_final_best", "최종등록자 최고등급", cells[6], "final_registered"),
+            grade_metric("grade_final_average", "최종등록자 평균등급", cells[7], "final_registered"),
+        ]
+        output.append({
+            "university": "한신대", "track": "특성화고교졸업자전형(정원외)", "program": program,
+            "page": 8, "table_index": 2, "row": row_index, "reported_year": 2026,
+            "quota": number(cells[2]), "applicants": number(cells[3]),
+            "competition_rate": number(cells[4]), "waitlist_rank": number(cells[5]),
+            "metrics": [metric for metric in metrics if metric], "raw": cells,
+        })
+    if len(output) != 4:
+        raise ValueError(f"한신대 모집단위 4개를 예상했지만 {len(output)}개를 찾았습니다.")
+    return output
+
+
 def ensure_institution(connection: sqlite3.Connection, university: str) -> int:
     row = connection.execute("SELECT id FROM institutions WHERE canonical_name = ?", (university,)).fetchone()
     if row:
@@ -488,6 +602,35 @@ def main() -> None:
         admission_year=2026,
     )
     insert_results(connection, document_id, ulsan_results(ulsan_path))
+    nesin_imports = [
+        (
+            "동명대",
+            NESIN_ROOT / "동명대" / "동명대학교" / "동명대학교__2026__입시결과.pdf",
+            "https://www.nesin.com/html/?dir1=menu03&dir2=university_rating_susi_detail&code=189",
+            tongmyong_results,
+        ),
+        (
+            "대진대",
+            NESIN_ROOT / "대진대" / "대진대학교" / "대진대학교__2026__입시결과.pdf",
+            "https://www.nesin.com/html/?dir1=menu03&dir2=university_rating_susi_detail&code=51",
+            daejin_results,
+        ),
+        (
+            "성결대",
+            NESIN_ROOT / "성결대" / "성결대학교" / "성결대학교__2026__입시결과.pdf",
+            "https://www.nesin.com/html/?dir1=menu03&dir2=university_rating_susi_detail&code=55",
+            sungkyul_results,
+        ),
+        (
+            "한신대",
+            NESIN_ROOT / "한신대" / "한신대학교" / "한신대학교__2026__입시결과.pdf",
+            "https://www.nesin.com/html/?dir1=menu03&dir2=university_rating_susi_detail&code=77",
+            hanshin_results,
+        ),
+    ]
+    for university, path, source_url, parser in nesin_imports:
+        document_id = insert_document(connection, university, path, source_url, admission_year=2026)
+        insert_results(connection, document_id, parser(path))
     connection.commit()
     print(json.dumps(export_web(connection), ensure_ascii=False))
     connection.close()

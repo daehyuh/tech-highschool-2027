@@ -54,6 +54,20 @@ test("ships a populated and traceable result dataset", async () => {
   assert.equal(hankyongRows.length, 9);
   assert.ok(hankyongRows.every((row) => row.representative_grade !== null));
   assert.ok(hankyongRows.every((row) => row.source_url.includes("ipsi.hknu.ac.kr")));
+  const nesinVocationalRows = [
+    ["동명대", "code=189", 34],
+    ["대진대", "code=51", 9],
+    ["성결대", "code=55", 17],
+    ["한신대", "code=77", 4],
+  ];
+  for (const [university, sourceCode, expectedRows] of nesinVocationalRows) {
+    const rows = data.results.filter((row) => row.source_name === university
+      && row.admission_year === 2026
+      && row.source_url.includes(sourceCode)
+      && row.representative_grade !== null);
+    assert.equal(rows.length, expectedRows);
+    assert.ok(rows.every((row) => row.source_url.includes("nesin.com")));
+  }
 });
 
 test("ships the full 82-university collection ledger", async () => {
@@ -66,4 +80,7 @@ test("ships the full 82-university collection ledger", async () => {
   assert.ok(data.universities.some((row) => row.university === "동아대" && row.status === "grade_available"));
   assert.ok(data.universities.some((row) => row.university === "울산대" && row.status === "grade_available"));
   assert.ok(data.universities.some((row) => row.university === "한경국립대" && row.status === "grade_available"));
+  for (const university of ["동명대", "대진대", "성결대", "한신대"]) {
+    assert.ok(data.universities.some((row) => row.university === university && row.status === "grade_available"));
+  }
 });

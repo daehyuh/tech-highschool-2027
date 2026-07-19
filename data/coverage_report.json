@@ -3,10 +3,10 @@
     "downloaded_universities": 53,
     "candidate_universities": 42,
     "universities_with_results": 38,
-    "universities_with_grade_results": 18,
+    "universities_with_grade_results": 22,
     "candidate_universities_without_results": 4,
     "universities_without_candidate_pdf": 11,
-    "suspicious_program_count": 0
+    "suspicious_program_count": 1
   },
   "universities": [
     {
@@ -335,9 +335,9 @@
       "documents": 2,
       "candidate_documents": 2,
       "raw_tables": 2,
-      "results": 40,
-      "programs": 40,
-      "grade_results": 0,
+      "results": 49,
+      "programs": 48,
+      "grade_results": 9,
       "minimum_confidence": 0.55,
       "university": "대진대학교",
       "candidate_pages": [
@@ -360,7 +360,7 @@
           ]
         }
       ],
-      "status": "results_without_grade"
+      "status": "grade_available"
     },
     {
       "documents": 2,
@@ -423,9 +423,9 @@
       "documents": 2,
       "candidate_documents": 2,
       "raw_tables": 2,
-      "results": 69,
-      "programs": 69,
-      "grade_results": 0,
+      "results": 103,
+      "programs": 72,
+      "grade_results": 34,
       "minimum_confidence": 0.55,
       "university": "동명대학교",
       "candidate_pages": [
@@ -448,7 +448,7 @@
           ]
         }
       ],
-      "status": "results_without_grade"
+      "status": "grade_available"
     },
     {
       "documents": 0,
@@ -753,9 +753,9 @@
       "documents": 2,
       "candidate_documents": 2,
       "raw_tables": 3,
-      "results": 40,
-      "programs": 40,
-      "grade_results": 0,
+      "results": 57,
+      "programs": 51,
+      "grade_results": 17,
       "minimum_confidence": 0.55,
       "university": "성결대학교",
       "candidate_pages": [
@@ -780,7 +780,7 @@
           ]
         }
       ],
-      "status": "results_without_grade"
+      "status": "grade_available"
     },
     {
       "documents": 1,
@@ -1541,9 +1541,9 @@
       "documents": 2,
       "candidate_documents": 2,
       "raw_tables": 2,
-      "results": 17,
-      "programs": 8,
-      "grade_results": 0,
+      "results": 21,
+      "programs": 12,
+      "grade_results": 4,
       "minimum_confidence": 0.78,
       "university": "한신대학교",
       "candidate_pages": [
@@ -1566,7 +1566,7 @@
           ]
         }
       ],
-      "status": "results_without_grade"
+      "status": "grade_available"
     },
     {
       "documents": 2,
@@ -1624,5 +1624,11 @@
       "status": "no_candidate_pdf"
     }
   ],
-  "suspicious_programs": []
+  "suspicious_programs": [
+    {
+      "canonical_name": "평택대",
+      "name": "전형별 요약(전체 모집단위)",
+      "result_count": 1
+    }
+  ]
 }
