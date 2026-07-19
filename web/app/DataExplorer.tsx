@@ -11,7 +11,6 @@ type Result = {
   page_number: number; local_path: string; source_url: string | null; metrics: Metric[];
 };
 type Dataset = { summary: { result_count: number; institution_count: number; program_count: number; grade_result_count: number }; results: Result[] };
-type Coverage = { target_universities: number; downloaded_universities: number; candidate_universities: number; universities_with_results: number; universities_with_grade_results: number };
 type TargetUniversity = { university: string; cycles: string[]; regions: string[]; status: string; pdf_count: number; source_count: number; result_count: number; program_count: number; grade_result_count: number };
 type TargetCoverage = { summary: { target_universities: number; universities_with_pdf: number; universities_with_source: number; universities_with_results: number; universities_with_grade_results: number; statuses: Record<string, number> }; universities: TargetUniversity[] };
 
@@ -51,7 +50,7 @@ function valueText(value: number | null, suffix = "") {
   return value === null ? "-" : `${Number.isInteger(value) ? value : value.toFixed(2)}${suffix}`;
 }
 
-export function DataExplorer({ data, coverage, targetCoverage }: { data: Dataset; coverage: Coverage; targetCoverage: TargetCoverage }) {
+export function DataExplorer({ data, targetCoverage }: { data: Dataset; targetCoverage: TargetCoverage }) {
   const [gradeInput, setGradeInput] = useState("");
   const [programQuery, setProgramQuery] = useState("");
   const [universityQuery, setUniversityQuery] = useState("");

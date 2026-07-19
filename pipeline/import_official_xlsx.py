@@ -171,6 +171,55 @@ def pyeongtaek_results(path: Path) -> list[dict]:
     }]
 
 
+def donga_results(path: Path) -> list[dict]:
+    """Read Dong-A's vocational-track table from the right half of PDF page 5."""
+    with pdfplumber.open(path) as document:
+        page = document.pages[4]
+        page_text = page.extract_text() or ""
+        if "특성화고교출신자(동일계)" not in page_text:
+            raise ValueError("동아대 특성화고교출신자 표를 찾지 못했습니다.")
+        tables = page.crop((page.width / 2, 0, page.width, page.height)).extract_tables()
+    if len(tables) != 1 or len(tables[0]) < 3:
+        raise ValueError("동아대 특성화고교출신자 표 구조가 예상과 다릅니다.")
+
+    output = []
+    for row_index, cells in enumerate(tables[0][2:], start=2):
+        if len(cells) < 8 or not cells[1]:
+            continue
+        metrics = [
+            grade_metric(
+                "grade_final_best",
+                "최종등록자 전교과 최고등급",
+                cells[6] or "",
+                "final_registered",
+            ),
+            grade_metric(
+                "grade_final_average",
+                "최종등록자 전교과 평균등급",
+                cells[7] or "",
+                "final_registered",
+            ),
+        ]
+        output.append({
+            "university": "동아대",
+            "track": "특성화고교출신자(동일계)",
+            "program": cells[1].replace("\n", ""),
+            "page": 5,
+            "table_index": 1,
+            "row": row_index,
+            "reported_year": 2026,
+            "quota": number(cells[2]),
+            "applicants": number(cells[3]),
+            "competition_rate": number(cells[4]),
+            "waitlist_rank": number(cells[5]),
+            "metrics": [metric for metric in metrics if metric],
+            "raw": cells,
+        })
+    if len(output) != 24:
+        raise ValueError(f"동아대 모집단위 24개를 예상했지만 {len(output)}개를 찾았습니다.")
+    return output
+
+
 def ensure_institution(connection: sqlite3.Connection, university: str) -> int:
     row = connection.execute("SELECT id FROM institutions WHERE canonical_name = ?", (university,)).fetchone()
     if row:
@@ -191,9 +240,21 @@ def insert_document(
     row = connection.execute("SELECT id FROM documents WHERE local_path = ?", (relative_path,)).fetchone()
     if row:
         return row[0]
+    page_count = 1
+    if path.suffix.lower() == ".pdf":
+        with pdfplumber.open(path) as document:
+            page_count = len(document.pages)
     cursor = connection.execute(
-        "INSERT INTO documents(institution_id, admission_year, admission_cycle, local_path, source_url, sha256, page_count) VALUES (?, ?, ?, ?, ?, ?, 1)",
-        (institution_id, admission_year, admission_cycle, relative_path, source_url, hashlib.sha256(path.read_bytes()).hexdigest()),
+        "INSERT INTO documents(institution_id, admission_year, admission_cycle, local_path, source_url, sha256, page_count) VALUES (?, ?, ?, ?, ?, ?, ?)",
+        (
+            institution_id,
+            admission_year,
+            admission_cycle,
+            relative_path,
+            source_url,
+            hashlib.sha256(path.read_bytes()).hexdigest(),
+            page_count,
+        ),
     )
     return cursor.lastrowid
 
@@ -228,8 +289,9 @@ def insert_results(connection: sqlite3.Connection, document_id: int, rows: list[
               track_id, program_id, page_number, table_index, row_index, reported_year, quota, applicants,
               competition_rate, registrants, waitlist_rank, representative_grade, representative_grade_basis,
               extraction_confidence, raw_row_json
-            ) VALUES (?, ?, 1, 0, ?, ?, ?, ?, ?, ?, ?, ?, ?, 0.98, ?)""",
-            (track_id, program_id, item["row"], item.get("reported_year", 2026),
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 0.98, ?)""",
+            (track_id, program_id, item.get("page", 1), item.get("table_index", 0),
+             item["row"], item.get("reported_year", 2026),
              int(item["quota"]) if item["quota"] is not None else None,
              int(item["applicants"]) if item.get("applicants") is not None else None,
              item["competition_rate"],
@@ -308,6 +370,15 @@ def main() -> None:
         admission_year=2025,
     )
     insert_results(connection, document_id, pyeongtaek_results(pyeongtaek_path))
+    donga_path = OFFICIAL_ROOT / "동아대" / "2026" / "2026학년도 학생부종합 입시결과.pdf"
+    document_id = insert_document(
+        connection,
+        "동아대",
+        donga_path,
+        "https://ent.donga.ac.kr/admission/html/rolling/resultView.asp?BOARD_IDX=30600",
+        admission_year=2026,
+    )
+    insert_results(connection, document_id, donga_results(donga_path))
     connection.commit()
     print(json.dumps(export_web(connection), ensure_ascii=False))
     connection.close()

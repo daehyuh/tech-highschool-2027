@@ -3,13 +3,13 @@
     "target_universities": 82,
     "universities_with_pdf": 48,
     "universities_with_candidate_pdf": 38,
-    "universities_with_results": 58,
-    "universities_with_grade_results": 37,
+    "universities_with_results": 59,
+    "universities_with_grade_results": 38,
     "universities_with_source": 82,
     "statuses": {
-      "grade_available": 37,
+      "grade_available": 38,
       "results_without_grade": 21,
-      "source_checked_no_result": 24,
+      "source_checked_no_result": 23,
       "candidate_not_extracted": 0,
       "pdf_without_target_result": 0,
       "not_on_nesin": 0
@@ -919,15 +919,22 @@
       "regions": [
         "부산"
       ],
-      "status": "source_checked_no_result",
+      "status": "grade_available",
       "pdf_count": 0,
       "candidate_pdf_count": 0,
-      "result_count": 0,
-      "program_count": 0,
-      "grade_result_count": 0,
-      "high_confidence_count": 0,
-      "source_count": 1,
+      "result_count": 24,
+      "program_count": 24,
+      "grade_result_count": 4,
+      "high_confidence_count": 24,
+      "source_count": 2,
       "documents": [
+        {
+          "site_name": "동아대",
+          "year": 2026,
+          "local_path": "입시결과_공식/동아대/2026/2026학년도 학생부종합 입시결과.pdf",
+          "source_url": "https://ent.donga.ac.kr/admission/html/rolling/resultView.asp?BOARD_IDX=30600",
+          "is_candidate": true
+        },
         {
           "site_name": "대입정보포털 어디가",
           "year": 2024,

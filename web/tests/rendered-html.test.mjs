@@ -39,6 +39,10 @@ test("ships a populated and traceable result dataset", async () => {
   assert.ok(data.results.every((row) => /^https:\/\//.test(row.source_url)));
   assert.ok(gradeRows.every((row) => row.representative_grade >= 1 && row.representative_grade <= 9));
   assert.ok(gradeRows.some((row) => row.metrics.some((metric) => metric.code.includes("grade"))));
+  const dongaRows = data.results.filter((row) => row.canonical_name === "동아대" && row.admission_year === 2026);
+  assert.equal(dongaRows.length, 24);
+  assert.equal(dongaRows.filter((row) => row.representative_grade !== null).length, 4);
+  assert.ok(dongaRows.every((row) => row.source_url.includes("BOARD_IDX=30600")));
 });
 
 test("ships the full 82-university collection ledger", async () => {
@@ -48,4 +52,5 @@ test("ships the full 82-university collection ledger", async () => {
   assert.equal(data.universities.length, 82);
   assert.equal(Object.values(data.summary.statuses).reduce((sum, value) => sum + value, 0), 82);
   assert.ok(data.universities.some((row) => row.university === "가천대" && row.status === "grade_available"));
+  assert.ok(data.universities.some((row) => row.university === "동아대" && row.status === "grade_available"));
 });
