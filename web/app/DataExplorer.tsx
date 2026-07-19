@@ -13,6 +13,11 @@ type Result = {
 type Dataset = { summary: { result_count: number; institution_count: number; program_count: number; grade_result_count: number }; results: Result[] };
 type TargetUniversity = { university: string; cycles: string[]; regions: string[]; status: string; pdf_count: number; source_count: number; result_count: number; program_count: number; grade_result_count: number };
 type TargetCoverage = { summary: { target_universities: number; universities_with_pdf: number; universities_with_source: number; universities_with_results: number; universities_with_grade_results: number; statuses: Record<string, number> }; universities: TargetUniversity[] };
+type UniversityStat = {
+  university: string; regions: string[]; resultCount: number; programCount: number; latestYear: number;
+  gradeCount: number; gradeAverage: number | null; gradeBest: number | null; gradeLowest: number | null;
+  competitionCount: number; competitionAverage: number | null;
+};
 
 const statusLabels: Record<string, string> = {
   grade_available: "등급 조회 가능", results_without_grade: "결과·경쟁률 확인", candidate_not_extracted: "추출 보정 중",
@@ -55,6 +60,7 @@ export function DataExplorer({ data, targetCoverage }: { data: Dataset; targetCo
   const [programQuery, setProgramQuery] = useState("");
   const [universityQuery, setUniversityQuery] = useState("");
   const [field, setField] = useState("전체 계열");
+  const [region, setRegion] = useState("전체 지역");
   const [year, setYear] = useState("전체 연도");
   const [onlyGrades, setOnlyGrades] = useState(true);
   const [verifiedOnly, setVerifiedOnly] = useState(true);
@@ -65,12 +71,25 @@ export function DataExplorer({ data, targetCoverage }: { data: Dataset; targetCo
   const [expanded, setExpanded] = useState<number | null>(null);
   const [coverageQuery, setCoverageQuery] = useState("");
   const [coverageStatus, setCoverageStatus] = useState("전체 상태");
+  const [statsSort, setStatsSort] = useState("등급 평균 순");
   const parsedGrade = gradeInput === "" ? null : Number(gradeInput);
   const gradeError = parsedGrade !== null && (!Number.isFinite(parsedGrade) || parsedGrade < 1 || parsedGrade > 9);
   const studentGrade = gradeError ? null : parsedGrade;
 
   const fields = useMemo(() => ["전체 계열", ...Array.from(new Set(data.results.map((row) => row.field_group))).sort()], [data.results]);
+  const regions = useMemo(() => ["전체 지역", ...Array.from(new Set(targetCoverage.universities.flatMap((row) => row.regions))).sort()], [targetCoverage.universities]);
   const years = useMemo(() => ["전체 연도", ...Array.from(new Set(data.results.map((row) => String(row.admission_year)))).sort().reverse()], [data.results]);
+  const resultTargetMap = useMemo(() => {
+    const targets = new Map(targetCoverage.universities.map((row) => [row.university, row]));
+    const map = new Map<string, TargetUniversity>();
+    for (const row of data.results) {
+      const target = targets.get(row.canonical_name) ?? targets.get(row.source_name);
+      if (!target) continue;
+      map.set(row.canonical_name, target);
+      map.set(row.source_name, target);
+    }
+    return map;
+  }, [data.results, targetCoverage.universities]);
   const filtered = useMemo(() => {
     const programNeedle = programQuery.trim().toLowerCase();
     const universityNeedle = universityQuery.trim().toLowerCase();
@@ -78,6 +97,7 @@ export function DataExplorer({ data, targetCoverage }: { data: Dataset; targetCo
       .filter((row) => !programNeedle || row.program_name.toLowerCase().includes(programNeedle))
       .filter((row) => !universityNeedle || `${row.source_name} ${row.canonical_name}`.toLowerCase().includes(universityNeedle))
       .filter((row) => field === "전체 계열" || row.field_group === field)
+      .filter((row) => region === "전체 지역" || (resultTargetMap.get(row.canonical_name) ?? resultTargetMap.get(row.source_name))?.regions.includes(region))
       .filter((row) => year === "전체 연도" || String(row.admission_year) === year)
       .filter((row) => !onlyGrades || row.representative_grade !== null)
       .filter((row) => !verifiedOnly || row.extraction_confidence >= 0.75);
@@ -116,7 +136,7 @@ export function DataExplorer({ data, targetCoverage }: { data: Dataset; targetCo
       }
       return b.admission_year - a.admission_year || a.source_name.localeCompare(b.source_name, "ko");
     });
-  }, [data.results, programQuery, universityQuery, field, year, onlyGrades, verifiedOnly, latestOnly, fitBand, sortBy, studentGrade]);
+  }, [data.results, programQuery, universityQuery, field, region, resultTargetMap, year, onlyGrades, verifiedOnly, latestOnly, fitBand, sortBy, studentGrade]);
 
   const bandCounts = useMemo(() => {
     const counts = { safe: 0, fit: 0, reach: 0 };
@@ -127,6 +147,7 @@ export function DataExplorer({ data, targetCoverage }: { data: Dataset; targetCo
       .filter((row) => !programNeedle || row.program_name.toLowerCase().includes(programNeedle))
       .filter((row) => !universityNeedle || `${row.source_name} ${row.canonical_name}`.toLowerCase().includes(universityNeedle))
       .filter((row) => field === "전체 계열" || row.field_group === field)
+      .filter((row) => region === "전체 지역" || (resultTargetMap.get(row.canonical_name) ?? resultTargetMap.get(row.source_name))?.regions.includes(region))
       .filter((row) => year === "전체 연도" || String(row.admission_year) === year)
       .filter((row) => row.representative_grade !== null)
       .filter((row) => !verifiedOnly || row.extraction_confidence >= 0.75);
@@ -144,20 +165,60 @@ export function DataExplorer({ data, targetCoverage }: { data: Dataset; targetCo
       if (fit) counts[fit.tone] += 1;
     }
     return counts;
-  }, [data.results, programQuery, universityQuery, field, year, verifiedOnly, latestOnly, studentGrade]);
+  }, [data.results, programQuery, universityQuery, field, region, resultTargetMap, year, verifiedOnly, latestOnly, studentGrade]);
+  const universityStats = useMemo(() => {
+    const groups = new Map<string, {
+      university: string; regions: string[]; rows: number; programs: Set<string>; latestYear: number;
+      grades: number[]; competitions: number[];
+    }>();
+    for (const row of filtered) {
+      const target = resultTargetMap.get(row.canonical_name) ?? resultTargetMap.get(row.source_name);
+      const university = target?.university ?? row.canonical_name;
+      const current = groups.get(university) ?? {
+        university, regions: target?.regions ?? [], rows: 0, programs: new Set<string>(), latestYear: row.admission_year,
+        grades: [], competitions: [],
+      };
+      current.rows += 1;
+      current.programs.add(row.program_name);
+      current.latestYear = Math.max(current.latestYear, row.admission_year);
+      if (row.representative_grade !== null) current.grades.push(row.representative_grade);
+      if (row.competition_rate !== null) current.competitions.push(row.competition_rate);
+      groups.set(university, current);
+    }
+    const average = (values: number[]) => values.length ? values.reduce((sum, value) => sum + value, 0) / values.length : null;
+    const stats: UniversityStat[] = [...groups.values()].map((group) => ({
+      university: group.university,
+      regions: group.regions,
+      resultCount: group.rows,
+      programCount: group.programs.size,
+      latestYear: group.latestYear,
+      gradeCount: group.grades.length,
+      gradeAverage: average(group.grades),
+      gradeBest: group.grades.length ? Math.min(...group.grades) : null,
+      gradeLowest: group.grades.length ? Math.max(...group.grades) : null,
+      competitionCount: group.competitions.length,
+      competitionAverage: average(group.competitions),
+    }));
+    return stats.sort((a, b) => {
+      if (statsSort === "결과 많은 순") return b.resultCount - a.resultCount || a.university.localeCompare(b.university, "ko");
+      if (statsSort === "경쟁률 높은 순") return (b.competitionAverage ?? -1) - (a.competitionAverage ?? -1) || a.university.localeCompare(b.university, "ko");
+      if (statsSort === "대학명 순") return a.university.localeCompare(b.university, "ko");
+      return (a.gradeAverage ?? 99) - (b.gradeAverage ?? 99) || a.university.localeCompare(b.university, "ko");
+    });
+  }, [filtered, resultTargetMap, statsSort]);
   const filteredCoverage = useMemo(() => targetCoverage.universities.filter((row) =>
     (!coverageQuery.trim() || `${row.university} ${row.regions.join(" ")}`.toLowerCase().includes(coverageQuery.trim().toLowerCase()))
     && (coverageStatus === "전체 상태" || row.status === coverageStatus)
   ), [targetCoverage.universities, coverageQuery, coverageStatus]);
 
   const reset = () => {
-    setGradeInput(""); setProgramQuery(""); setUniversityQuery(""); setField("전체 계열"); setYear("전체 연도");
+    setGradeInput(""); setProgramQuery(""); setUniversityQuery(""); setField("전체 계열"); setRegion("전체 지역"); setYear("전체 연도");
     setOnlyGrades(true); setVerifiedOnly(true); setLatestOnly(true); setFitBand("전체 추천군"); setSortBy("추천순");
     setVisible(40); setExpanded(null);
   };
 
   return <main>
-    <header className="topbar"><a className="brand" href="#top" aria-label="특성화고 입시 데이터랩 홈"><span className="brand-mark">특</span><span>특성화고 입시 데이터랩</span></a><nav><a href="#search">입결 검색</a><a href="#coverage">수집 현황</a><a href="#guide">데이터 안내</a></nav></header>
+    <header className="topbar"><a className="brand" href="#top" aria-label="특성화고 입시 데이터랩 홈"><span className="brand-mark">특</span><span>특성화고 입시 데이터랩</span></a><nav><a href="#search">입결 검색</a><a href="#statistics">대학 통계</a><a href="#coverage">수집 현황</a><a href="#guide">데이터 안내</a></nav></header>
 
     <section className="hero" id="top">
       <div className="hero-copy"><p className="eyebrow">VOCATIONAL ADMISSION INTELLIGENCE</p><h1>흩어진 대학 입결을<br/><span>상담 가능한 데이터</span>로.</h1><p className="hero-description">특성화고 전형의 학과별 모집·경쟁률·등급 지표를 한곳에서 비교하세요. 원본 PDF의 페이지와 대학별 지표명까지 함께 보존했습니다.</p></div>
@@ -171,7 +232,8 @@ export function DataExplorer({ data, targetCoverage }: { data: Dataset; targetCo
         <label><span>학생 내신등급</span><input type="number" min="1" max="9" step="0.01" value={gradeInput} onChange={(event) => { setGradeInput(event.target.value); setFitBand("전체 추천군"); setVisible(40); }} placeholder="예: 2.75" aria-invalid={gradeError} aria-describedby="grade-help" /><small id="grade-help" className={gradeError ? "input-help error" : "input-help"}>{gradeError ? "1.00~9.00 사이 등급을 입력하세요." : "숫자가 낮을수록 우수한 내신등급입니다."}</small></label>
         <label><span>희망 학과</span><input value={programQuery} onChange={(event) => setProgramQuery(event.target.value)} placeholder="컴퓨터, 경영, 간호…" /></label>
         <label><span>대학교</span><input value={universityQuery} onChange={(event) => setUniversityQuery(event.target.value)} placeholder="대학명 검색" /></label>
-        <div className="select-grid"><label><span>계열</span><select value={field} onChange={(event) => { setField(event.target.value); setVisible(40); }}>{fields.map((item) => <option key={item}>{item}</option>)}</select></label><label><span>입시연도</span><select value={year} onChange={(event) => { setYear(event.target.value); setVisible(40); }}>{years.map((item) => <option key={item}>{item}</option>)}</select></label></div>
+        <div className="select-grid"><label><span>계열</span><select value={field} onChange={(event) => { setField(event.target.value); setVisible(40); }}>{fields.map((item) => <option key={item}>{item}</option>)}</select></label><label><span>지역</span><select value={region} onChange={(event) => { setRegion(event.target.value); setVisible(40); }}>{regions.map((item) => <option key={item}>{item}</option>)}</select></label></div>
+        <label><span>입시연도</span><select value={year} onChange={(event) => { setYear(event.target.value); setVisible(40); }}>{years.map((item) => <option key={item}>{item}</option>)}</select></label>
         <div className="select-grid"><label><span>추천군</span><select value={fitBand} disabled={studentGrade === null} onChange={(event) => { setFitBand(event.target.value); setVisible(40); }}><option>전체 추천군</option><option>안정</option><option>적정</option><option>도전</option></select></label><label><span>정렬</span><select value={sortBy} onChange={(event) => setSortBy(event.target.value)}><option>추천순</option><option>최신순</option><option>등급 높은 순</option><option>등급 여유 순</option></select></label></div>
         <label className="check"><input type="checkbox" checked={onlyGrades} onChange={(event) => setOnlyGrades(event.target.checked)} /><span>등급 데이터가 있는 결과만</span></label>
         <label className="check"><input type="checkbox" checked={verifiedOnly} onChange={(event) => setVerifiedOnly(event.target.checked)} /><span>신뢰도 높은 자동 추출만</span></label>
@@ -207,6 +269,21 @@ export function DataExplorer({ data, targetCoverage }: { data: Dataset; targetCo
         </div>}
         {visible < filtered.length && <button className="load-more" onClick={() => setVisible((count) => count + 40)}>40개 더 보기</button>}
       </section>
+    </section>
+
+    <section className="statistics-section" id="statistics">
+      <div className="statistics-heading">
+        <div><p className="section-kicker">UNIVERSITY STATISTICS</p><h2>현재 상담 조건의 대학별 통계</h2><p>위 입결 검색 조건과 연동된 결과를 대학 단위로 묶었습니다. 서로 다른 대학의 대표등급 기준을 단순 평균한 참고 통계입니다.</p></div>
+        <div className="statistics-control"><label htmlFor="statistics-sort">정렬</label><select id="statistics-sort" value={statsSort} onChange={(event) => setStatsSort(event.target.value)}><option>등급 평균 순</option><option>결과 많은 순</option><option>경쟁률 높은 순</option><option>대학명 순</option></select><strong>{universityStats.length}개 대학</strong></div>
+      </div>
+      {universityStats.length === 0 ? <div className="statistics-empty">현재 검색 조건으로 계산할 대학 통계가 없습니다.</div> : <div className="statistics-grid">
+        {universityStats.map((stat) => <article className="statistics-card" key={stat.university}>
+          <div className="statistics-card-title"><div><span>{stat.regions.join(" · ") || "지역 미표기"}</span><h3>{stat.university}</h3></div><em>{stat.latestYear}</em></div>
+          <div className="statistics-primary"><span>대표등급 단순 평균</span><strong>{valueText(stat.gradeAverage)}</strong><small>{stat.gradeCount ? `${valueText(stat.gradeBest)} ~ ${valueText(stat.gradeLowest)} · ${stat.gradeCount}건` : "등급 미공개"}</small></div>
+          <dl><div><dt>평균 경쟁률</dt><dd>{valueText(stat.competitionAverage, stat.competitionAverage === null ? "" : ":1")}</dd></div><div><dt>모집단위</dt><dd>{stat.programCount}개</dd></div><div><dt>비교 결과</dt><dd>{stat.resultCount}건</dd></div></dl>
+          <button onClick={() => { setUniversityQuery(stat.university); setVisible(40); document.getElementById("search")?.scrollIntoView({ behavior: "smooth" }); }}>이 대학 결과 보기</button>
+        </article>)}
+      </div>}
     </section>
 
     <section className="coverage-section" id="coverage">

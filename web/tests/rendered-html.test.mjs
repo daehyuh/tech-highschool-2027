@@ -23,7 +23,10 @@ test("server-renders the admissions data platform", async () => {
   assert.match(html, /대학·학과별 최신 결과만/);
   assert.match(html, /학생 등급을 입력하면 대학·학과별 최신 결과를 적정·안정·도전 순으로 추천합니다/);
   assert.match(html, /추천군/);
+  assert.match(html, /전체 지역/);
   assert.match(html, /등급 데이터가 있는 결과만/);
+  assert.match(html, /현재 상담 조건의 대학별 통계/);
+  assert.match(html, /대표등급 단순 평균/);
   assert.match(html, /82개 대학 수집 현황/);
   assert.doesNotMatch(html, /codex-preview|react-loading-skeleton|Your site is taking shape/);
 });
@@ -47,6 +50,10 @@ test("ships a populated and traceable result dataset", async () => {
   assert.equal(ulsanRows.length, 10);
   assert.equal(ulsanRows.filter((row) => row.representative_grade !== null).length, 9);
   assert.ok(ulsanRows.every((row) => row.source_url.includes("no=16268")));
+  const hankyongRows = data.results.filter((row) => row.canonical_name === "한경국립대" && row.admission_year === 2026);
+  assert.equal(hankyongRows.length, 9);
+  assert.ok(hankyongRows.every((row) => row.representative_grade !== null));
+  assert.ok(hankyongRows.every((row) => row.source_url.includes("ipsi.hknu.ac.kr")));
 });
 
 test("ships the full 82-university collection ledger", async () => {
@@ -58,4 +65,5 @@ test("ships the full 82-university collection ledger", async () => {
   assert.ok(data.universities.some((row) => row.university === "가천대" && row.status === "grade_available"));
   assert.ok(data.universities.some((row) => row.university === "동아대" && row.status === "grade_available"));
   assert.ok(data.universities.some((row) => row.university === "울산대" && row.status === "grade_available"));
+  assert.ok(data.universities.some((row) => row.university === "한경국립대" && row.status === "grade_available"));
 });
