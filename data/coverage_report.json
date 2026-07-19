@@ -3,7 +3,7 @@
     "downloaded_universities": 53,
     "candidate_universities": 42,
     "universities_with_results": 38,
-    "universities_with_grade_results": 27,
+    "universities_with_grade_results": 28,
     "candidate_universities_without_results": 4,
     "universities_without_candidate_pdf": 11,
     "suspicious_program_count": 1
@@ -677,9 +677,9 @@
       "documents": 2,
       "candidate_documents": 2,
       "raw_tables": 2,
-      "results": 21,
-      "programs": 12,
-      "grade_results": 0,
+      "results": 22,
+      "programs": 13,
+      "grade_results": 1,
       "minimum_confidence": 0.55,
       "university": "서울신학대학교",
       "candidate_pages": [
@@ -702,7 +702,7 @@
           ]
         }
       ],
-      "status": "results_without_grade"
+      "status": "grade_available"
     },
     {
       "documents": 2,

@@ -64,6 +64,7 @@ test("ships a populated and traceable result dataset", async () => {
     ["광운대", "code=7", 8],
     ["덕성여대", "code=11", 3],
     ["서울여대", "code=24", 2],
+    ["서울신학대", "code=53", 1],
   ];
   for (const [university, sourceCode, expectedRows] of nesinVocationalRows) {
     const rows = data.results.filter((row) => row.source_name === university
@@ -85,7 +86,7 @@ test("ships the full 82-university collection ledger", async () => {
   assert.ok(data.universities.some((row) => row.university === "동아대" && row.status === "grade_available"));
   assert.ok(data.universities.some((row) => row.university === "울산대" && row.status === "grade_available"));
   assert.ok(data.universities.some((row) => row.university === "한경국립대" && row.status === "grade_available"));
-  for (const university of ["동명대", "대진대", "성결대", "한신대", "수원대", "신한대", "광운대", "덕성여대", "서울여대"]) {
+  for (const university of ["동명대", "대진대", "성결대", "한신대", "수원대", "신한대", "광운대", "덕성여대", "서울여대", "서울신학대"]) {
     assert.ok(data.universities.some((row) => row.university === university && row.status === "grade_available"));
   }
 });

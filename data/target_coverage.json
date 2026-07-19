@@ -4,11 +4,11 @@
     "universities_with_pdf": 48,
     "universities_with_candidate_pdf": 38,
     "universities_with_results": 61,
-    "universities_with_grade_results": 49,
+    "universities_with_grade_results": 50,
     "universities_with_source": 82,
     "statuses": {
-      "grade_available": 49,
-      "results_without_grade": 12,
+      "grade_available": 50,
+      "results_without_grade": 11,
       "source_checked_no_result": 21,
       "candidate_not_extracted": 0,
       "pdf_without_target_result": 0,
@@ -1372,13 +1372,13 @@
       "regions": [
         "경기"
       ],
-      "status": "results_without_grade",
+      "status": "grade_available",
       "pdf_count": 2,
       "candidate_pdf_count": 2,
-      "result_count": 21,
-      "program_count": 7,
-      "grade_result_count": 0,
-      "high_confidence_count": 0,
+      "result_count": 22,
+      "program_count": 8,
+      "grade_result_count": 1,
+      "high_confidence_count": 1,
       "source_count": 3,
       "documents": [
         {

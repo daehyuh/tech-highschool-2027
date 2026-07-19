@@ -35,7 +35,7 @@
 서울기독대,source_checked_no_result,수시모집,서울,0,0,1,0,0,0,0,수시모집!11
 서울대,source_checked_no_result,수시모집,서울,1,0,1,0,0,0,0,수시모집!12
 서울시립대,source_checked_no_result,정시모집,,1,1,2,0,0,0,0,정시모집!11
-서울신학대,results_without_grade,수시모집,경기,2,2,3,21,7,0,0,수시모집!25
+서울신학대,grade_available,수시모집,경기,2,2,3,22,8,1,1,수시모집!25
 서울여대,grade_available,수시모집,서울,2,2,3,39,36,2,2,수시모집!13
 성결대,grade_available,수시모집,경기,2,2,3,57,45,17,37,수시모집!26
 성공회대,grade_available,수시모집,서울,1,1,2,4,2,2,4,수시모집!14

@@ -581,6 +581,27 @@ def seoul_womens_results(path: Path) -> list[dict]:
     return output
 
 
+def seoul_theological_results(path: Path) -> list[dict]:
+    """Read Seoul Theological's explicitly combined vocational-track summary."""
+    with pdfplumber.open(path) as document:
+        tables = document.pages[6].extract_tables()
+    table = next((table for table in tables if len(table) == 6 and len(table[0]) == 6), None)
+    if table is None:
+        raise ValueError("서울신학대 특성화고졸업자 집계표를 찾지 못했습니다.")
+    programs = [row[0].replace("\n", "") for row in table[2:] if row[0]]
+    summary = table[2]
+    metric = grade_metric("grade_average", "특성화고졸업자전형 학생부교과 평균성적", summary[4])
+    if len(programs) != 4 or not metric:
+        raise ValueError("서울신학대 4개 모집단위 집계 또는 평균등급을 읽지 못했습니다.")
+    return [{
+        "university": "서울신학대", "track": "특성화고졸업자전형",
+        "program": " / ".join(programs) + " (4개 모집단위 집계)",
+        "page": 7, "table_index": 2, "row": 2, "reported_year": 2026,
+        "quota": number(summary[1]), "applicants": number(summary[2]),
+        "competition_rate": number(summary[3]), "metrics": [metric], "raw": table[2:],
+    }]
+
+
 def ensure_institution(connection: sqlite3.Connection, university: str) -> int:
     row = connection.execute("SELECT id FROM institutions WHERE canonical_name = ?", (university,)).fetchone()
     if row:
@@ -856,6 +877,12 @@ def main() -> None:
             NESIN_ROOT / "서울여대" / "서울여자대학교" / "서울여자대학교__2026__입시결과.pdf",
             "https://www.nesin.com/html/?dir1=menu03&dir2=university_rating_susi_detail&code=24",
             seoul_womens_results,
+        ),
+        (
+            "서울신학대학교",
+            NESIN_ROOT / "서울신학대" / "서울신학대학교" / "서울신학대학교__2026__입시결과.pdf",
+            "https://www.nesin.com/html/?dir1=menu03&dir2=university_rating_susi_detail&code=53",
+            seoul_theological_results,
         ),
     ]
     for university, path, source_url, parser in nesin_imports:
