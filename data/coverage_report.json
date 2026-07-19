@@ -3,7 +3,7 @@
     "downloaded_universities": 53,
     "candidate_universities": 42,
     "universities_with_results": 38,
-    "universities_with_grade_results": 24,
+    "universities_with_grade_results": 27,
     "candidate_universities_without_results": 4,
     "universities_without_candidate_pdf": 11,
     "suspicious_program_count": 1
@@ -257,9 +257,9 @@
       "documents": 2,
       "candidate_documents": 2,
       "raw_tables": 4,
-      "results": 16,
-      "programs": 16,
-      "grade_results": 0,
+      "results": 24,
+      "programs": 18,
+      "grade_results": 8,
       "minimum_confidence": 0.78,
       "university": "광운대학교",
       "candidate_pages": [
@@ -290,7 +290,7 @@
           ]
         }
       ],
-      "status": "results_without_grade"
+      "status": "grade_available"
     },
     {
       "documents": 2,
@@ -366,9 +366,9 @@
       "documents": 2,
       "candidate_documents": 2,
       "raw_tables": 15,
-      "results": 2,
-      "programs": 2,
-      "grade_results": 0,
+      "results": 5,
+      "programs": 5,
+      "grade_results": 3,
       "minimum_confidence": 0.55,
       "university": "덕성여자대학교",
       "candidate_pages": [
@@ -417,7 +417,7 @@
           ]
         }
       ],
-      "status": "results_without_grade"
+      "status": "grade_available"
     },
     {
       "documents": 2,
@@ -708,9 +708,9 @@
       "documents": 2,
       "candidate_documents": 2,
       "raw_tables": 16,
-      "results": 37,
-      "programs": 34,
-      "grade_results": 0,
+      "results": 39,
+      "programs": 36,
+      "grade_results": 2,
       "minimum_confidence": 0.55,
       "university": "서울여자대학교",
       "candidate_pages": [
@@ -747,7 +747,7 @@
           ]
         }
       ],
-      "status": "results_without_grade"
+      "status": "grade_available"
     },
     {
       "documents": 2,

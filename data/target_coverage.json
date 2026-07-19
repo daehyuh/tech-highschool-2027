@@ -4,11 +4,11 @@
     "universities_with_pdf": 48,
     "universities_with_candidate_pdf": 38,
     "universities_with_results": 61,
-    "universities_with_grade_results": 46,
+    "universities_with_grade_results": 49,
     "universities_with_source": 82,
     "statuses": {
-      "grade_available": 46,
-      "results_without_grade": 15,
+      "grade_available": 49,
+      "results_without_grade": 12,
       "source_checked_no_result": 21,
       "candidate_not_extracted": 0,
       "pdf_without_target_result": 0,
@@ -488,13 +488,13 @@
       "regions": [
         "서울"
       ],
-      "status": "results_without_grade",
+      "status": "grade_available",
       "pdf_count": 2,
       "candidate_pdf_count": 2,
-      "result_count": 16,
-      "program_count": 10,
-      "grade_result_count": 0,
-      "high_confidence_count": 16,
+      "result_count": 24,
+      "program_count": 12,
+      "grade_result_count": 8,
+      "high_confidence_count": 24,
       "source_count": 3,
       "documents": [
         {
@@ -804,13 +804,13 @@
       "regions": [
         "서울"
       ],
-      "status": "results_without_grade",
+      "status": "grade_available",
       "pdf_count": 2,
       "candidate_pdf_count": 2,
-      "result_count": 2,
-      "program_count": 2,
-      "grade_result_count": 0,
-      "high_confidence_count": 0,
+      "result_count": 5,
+      "program_count": 5,
+      "grade_result_count": 3,
+      "high_confidence_count": 3,
       "source_count": 3,
       "documents": [
         {
@@ -1415,13 +1415,13 @@
       "regions": [
         "서울"
       ],
-      "status": "results_without_grade",
+      "status": "grade_available",
       "pdf_count": 2,
       "candidate_pdf_count": 2,
-      "result_count": 37,
-      "program_count": 34,
-      "grade_result_count": 0,
-      "high_confidence_count": 0,
+      "result_count": 39,
+      "program_count": 36,
+      "grade_result_count": 2,
+      "high_confidence_count": 2,
       "source_count": 3,
       "documents": [
         {

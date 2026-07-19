@@ -7,10 +7,10 @@
 경희대학교(국제),grade_available,2,2,8,90,77,3,0.55
 경희대학교(서울),grade_available,2,2,8,90,77,3,0.55
 계명대학교,no_candidate_pdf,0,0,0,0,0,0,
-광운대학교,results_without_grade,2,2,4,16,16,0,0.78
+광운대학교,grade_available,2,2,4,24,18,8,0.78
 국립공주대학교,grade_available,2,2,7,2,1,2,0.88
 대진대학교,grade_available,2,2,2,49,48,9,0.55
-덕성여자대학교,results_without_grade,2,2,15,2,2,0,0.55
+덕성여자대학교,grade_available,2,2,15,5,5,3,0.55
 동명대학교,grade_available,2,2,2,103,72,34,0.55
 동양대학교(북서울),no_candidate_pdf,0,0,0,0,0,0,
 명지대학교(서울),grade_available,2,2,5,34,34,33,0.78
@@ -21,7 +21,7 @@
 서울대학교,no_candidate_pdf,0,0,0,0,0,0,
 서울시립대학교,candidate_not_extracted,1,1,1,0,0,0,
 서울신학대학교,results_without_grade,2,2,2,21,12,0,0.55
-서울여자대학교,results_without_grade,2,2,16,37,34,0,0.55
+서울여자대학교,grade_available,2,2,16,39,36,2,0.55
 성결대학교,grade_available,2,2,3,57,51,17,0.55
 성공회대학교,grade_available,1,1,2,4,2,2,0.78
 성균관대학교,candidate_not_extracted,1,1,0,0,0,0,

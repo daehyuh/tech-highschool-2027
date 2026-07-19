@@ -487,6 +487,100 @@ def shinhan_results(path: Path) -> list[dict]:
     return output
 
 
+def kwangwoon_results(path: Path) -> list[dict]:
+    """Read Kwangwoon's final-registrant 70% cut grades for the vocational track."""
+    with pdfplumber.open(path) as document:
+        tables = document.pages[9].extract_tables()
+    table = next((table for table in tables if table and len(table[0]) == 10), None)
+    if table is None or "학생부" not in (table[0][5] or ""):
+        raise ValueError("광운대 특성화고졸업자 성적표를 찾지 못했습니다.")
+    output = []
+    for row_index, cells in enumerate(table[1:], start=1):
+        if len(cells) < 9 or not cells[1]:
+            continue
+        metric = grade_metric("grade_final_70_cut", "최종등록자 학생부등급 70% 컷", cells[5], "final_registered")
+        if not metric:
+            continue
+        output.append({
+            "university": "광운대", "track": "학생부종합(특성화고졸업자전형)",
+            "program": " / ".join(part.strip() for part in cells[1].splitlines() if part.strip()),
+            "page": 10, "table_index": 1, "row": row_index, "reported_year": 2026,
+            "quota": number(cells[2]), "applicants": number(cells[3]),
+            "competition_rate": number(cells[4]), "waitlist_rank": number(cells[7]),
+            "metrics": [metric], "raw": cells,
+        })
+    if len(output) != 8:
+        raise ValueError(f"광운대 모집단위 8개를 예상했지만 {len(output)}개를 찾았습니다.")
+    return output
+
+
+def duksung_results(path: Path) -> list[dict]:
+    """Read Duksung's three published college-level vocational aggregates."""
+    with pdfplumber.open(path) as document:
+        competition_table = document.pages[8].extract_tables()[3]
+        grade_table = document.pages[13].extract_tables()[2]
+    competition = {
+        row[0].replace("\n", " "): row[7:10]
+        for row in competition_table[2:]
+        if row[0] and len(row) >= 10 and number(row[7]) is not None
+    }
+    output = []
+    for row_index, cells in enumerate(grade_table[3:], start=3):
+        if len(cells) < 16 or not cells[0]:
+            continue
+        program = cells[0].replace("\n", " ")
+        metrics = [
+            grade_metric("grade_initial_average", "2026 최초합격자 등급평균", cells[11], "initial"),
+            numeric_metric("score_final_average", "2026 최종등록자 환산평균", cells[12], "score", "final_registered"),
+            grade_metric("grade_final_average", "2026 최종등록자 등급평균", cells[13], "final_registered"),
+            grade_metric("grade_final_70_cut", "2026 최종등록자 70% CUT", cells[14], "final_registered"),
+        ]
+        quota, applicants, competition_rate = competition.get(program, (None, None, None))
+        output.append({
+            "university": "덕성여대", "track": "기회균형전형Ⅰ_특성화고교", "program": program,
+            "page": 14, "table_index": 2, "row": row_index, "reported_year": 2026,
+            "quota": number(quota), "applicants": number(applicants),
+            "competition_rate": number(competition_rate), "waitlist_rank": number(cells[15]),
+            "metrics": [metric for metric in metrics if metric], "raw": cells,
+        })
+    if len(output) != 3:
+        raise ValueError(f"덕성여대 집계단위 3개를 예상했지만 {len(output)}개를 찾았습니다.")
+    return output
+
+
+def seoul_womens_results(path: Path) -> list[dict]:
+    """Read Seoul Women's two published college-level vocational aggregates."""
+    with pdfplumber.open(path) as document:
+        text = document.pages[5].extract_text() or ""
+    marker = "6) 학생부종합(기회균형전형_특성화고교졸업자)"
+    if marker not in text:
+        raise ValueError("서울여대 특성화고교졸업자 결과 구역을 찾지 못했습니다.")
+    section = text.split(marker, 1)[1]
+    definitions = [
+        ("사회과학대학", r"사회과학대학\s+(\d+)\s+(\d+(?:\.\d+)?)\s+(\d+)\s+(\d+(?:\.\d+)?)\s+(\d+(?:\.\d+)?)\s+(\d+(?:\.\d+)?)"),
+        ("과학기술융합대학, 미래산업융합대학", r"과학기술융합대학,\s*(\d+)\s+(\d+(?:\.\d+)?)\s+(\d+)\s+(\d+(?:\.\d+)?)\s+(\d+(?:\.\d+)?)\s+(\d+(?:\.\d+)?)"),
+    ]
+    output = []
+    for row_index, (program, pattern) in enumerate(definitions, start=1):
+        match = re.search(pattern, section)
+        if not match:
+            raise ValueError(f"서울여대 {program} 집계행을 찾지 못했습니다.")
+        quota, competition_rate, waitlist, best, average, worst = match.groups()
+        metrics = [
+            grade_metric("grade_final_best", "최종합격자 최고등급", best, "final_accepted"),
+            grade_metric("grade_final_average", "최종합격자 평균등급", average, "final_accepted"),
+            grade_metric("grade_final_worst", "최종합격자 최저등급", worst, "final_accepted"),
+        ]
+        output.append({
+            "university": "서울여대", "track": "기회균형전형_특성화고교졸업자", "program": program,
+            "page": 6, "table_index": 2, "row": row_index, "reported_year": 2026,
+            "quota": number(quota), "competition_rate": number(competition_rate),
+            "waitlist_rank": number(waitlist), "metrics": [metric for metric in metrics if metric],
+            "raw": match.group(0),
+        })
+    return output
+
+
 def ensure_institution(connection: sqlite3.Connection, university: str) -> int:
     row = connection.execute("SELECT id FROM institutions WHERE canonical_name = ?", (university,)).fetchone()
     if row:
@@ -744,6 +838,24 @@ def main() -> None:
             NESIN_ROOT / "신한대" / "신한대학교(동두천)" / "신한대학교(동두천)__2026__입시결과.pdf",
             "https://www.nesin.com/html/?dir1=menu03&dir2=university_rating_susi_detail&code=216",
             shinhan_results,
+        ),
+        (
+            "광운대학교",
+            NESIN_ROOT / "광운대" / "광운대학교" / "광운대학교__2026__입시결과.pdf",
+            "https://www.nesin.com/html/?dir1=menu03&dir2=university_rating_susi_detail&code=7",
+            kwangwoon_results,
+        ),
+        (
+            "덕성여자대학교",
+            NESIN_ROOT / "덕성여대" / "덕성여자대학교" / "덕성여자대학교__2026__입시결과.pdf",
+            "https://www.nesin.com/html/?dir1=menu03&dir2=university_rating_susi_detail&code=11",
+            duksung_results,
+        ),
+        (
+            "서울여자대학교",
+            NESIN_ROOT / "서울여대" / "서울여자대학교" / "서울여자대학교__2026__입시결과.pdf",
+            "https://www.nesin.com/html/?dir1=menu03&dir2=university_rating_susi_detail&code=24",
+            seoul_womens_results,
         ),
     ]
     for university, path, source_url, parser in nesin_imports:
